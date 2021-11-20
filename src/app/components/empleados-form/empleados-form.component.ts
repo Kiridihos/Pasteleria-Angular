@@ -34,7 +34,92 @@ export class EmpleadosFormComponent implements OnInit {
       }
     );
   }
-
+  check():void{
+    if(this.checkNull()){
+      if(this.checkLetras()){
+        this.create();
+      }
+    }
+  }
+  checkNull():boolean{
+     if(this.empleado.nombres==null){
+      Swal.fire(
+        {
+          title: 'Error',
+          text: 'Se necesita un nombre',
+          icon: 'error',
+          confirmButtonText: 'volver'
+        }
+      );
+      return false;
+    }else if(this.empleado.nombres.charAt(0).match(/[\s]/) ||this.empleado.nombres.charAt(this.empleado.nombres.length-1).match(/[\s]/)){
+      Swal.fire(
+        {
+          title: 'Error',
+          text: 'Nombre no puede empezar/terminar con espacios',
+          icon: 'error',
+          confirmButtonText: 'volver'
+        }
+      );
+      return false;
+    }else if(this.empleado.apellidos==null){
+      Swal.fire(
+        {
+          title: 'Error',
+          text: 'Se necesita un apellido',
+          icon: 'error',
+          confirmButtonText: 'volver'
+        }
+      );
+      return false;
+    }else if(this.empleado.apellidos.charAt(0).match(/[\s]/ ||this.empleado.apellidos.charAt(this.empleado.apellidos.length-1).match(/[\s]/))){
+      Swal.fire(
+        {
+          title: 'Error',
+          text: 'Apellido no puede empezar con un espacio',
+          icon: 'error',
+          confirmButtonText: 'volver'
+        }
+      );
+      return false;
+    }else if(this.empleado.salarioActual==null){
+      Swal.fire(
+        {
+          title: 'Error',
+          text: 'Se necesita un salario',
+          icon: 'error',
+          confirmButtonText: 'volver'
+        }
+      );
+      return false;
+    }
+    return true;
+  }
+  checkLetras():boolean{
+    var alphaExp = /^[a-zA-Za\s]+$/;
+    if(!this.empleado.nombres?.match(alphaExp)){
+      Swal.fire(
+        {
+          title: 'Error',
+          text: 'El nombre solo puede tener letras',
+          icon: 'error',
+          confirmButtonText: 'volver'
+        }
+      );
+      return false;
+    }else if(!this.empleado.apellidos?.match(alphaExp)){
+      Swal.fire(
+        {
+          title: 'Error',
+          text: 'Los apellidos solo puede tener letras',
+          icon: 'error',
+          confirmButtonText: 'volver'
+        }
+      );
+      return false;
+    }
+    return true;
+  }
   cargarEmpleado(){
 
   }
