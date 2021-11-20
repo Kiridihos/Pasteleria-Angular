@@ -1,0 +1,19 @@
+<div class="row pt-5">
+    <div class="col-12">
+        <form>
+            <div class="form-group my-3 ">
+                <label for="nombres">Nombres del empleado</label>
+                <input type="text" name="nombres" id="nombres" class="form-control" placeholder="Nombres..." [(ngModel)]="empleado.nombres">
+            </div>
+            <div class="form-group my-3 ">
+                <label for="apellidos">Apellidos del empleado</label>
+                <input type="text" name="apellidos" id="apellidos" class="form-control" placeholder="Apellidos..." [(ngModel)]="empleado.apellidos">
+            </div>
+            <div class="form-group my-3 ">
+                <label for="salario actual">Salario Actual</label>
+                <input type="number" name="salarioActual" id="salarioActual" class="form-control" placeholder="Salario actual..." [(ngModel)]="empleado.salarioActual">
+            </div>
+           <button class="btn btn-primary" (click)="create()">Guardar</button>
+        </form>
+    </div>
+</div>

@@ -8,7 +8,7 @@ import { Empleado } from '../models/empleado';
   providedIn: 'root'
 })
 export class EmpleadoService {
-  private urlEndPoint = 'http://localhost:8080/api/empleados';
+  private urlEndPoint = 'http://localhost:8081/api/empleados/';
   private header = new HttpHeaders({
     'Content-type': 'application/json'
   });
