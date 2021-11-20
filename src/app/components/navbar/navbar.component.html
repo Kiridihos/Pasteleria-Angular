@@ -19,11 +19,22 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
+              <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">Clientes</a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#" class="dropdown-item">Registrar cliente</a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item">Ver todos los clientes</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Pasteles
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" [routerLink]="['/pasteleros']">Datos de elaboracion</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/pasteleros']">Ver todos los pasteles</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -31,7 +42,8 @@
                 Orden
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" [routerLink]="['/pasteleros']">Datos de orden</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/pasteleros']">Nueva orden</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/pasteleros']">Ver órdenes</a></li>
               </ul>
             </li>   
           </ul>
