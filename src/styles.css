@@ -1,6 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 /*Atributos unicos*/
 @import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+body {
+	background-color: #C3CEE6;
+}
+.bg-teal{
+	background-color: #E3F2FD!important;
+}
+.bg-lilac{
+	background-color: #C3CEE6!important;
+}
 .navbar-brand {
 	font-family: 'Cookie', cursive;
 	font-size: 2em;
