@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 /*Atributos unicos*/
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+.navbar-brand {
+	font-family: 'Cookie', cursive;
+	font-size: 2em;
+}
 .carousel-item {
 	object-fit: cover;
 }
