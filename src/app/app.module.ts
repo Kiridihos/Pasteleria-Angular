@@ -11,11 +11,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainComponent } from './components/main/main.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
-import { PasteleroslistComponent } from './components/pasteleroslist/pasteleroslist.component';
+import { EmpleadosListComponent } from './components/empleados-list/empleados-list.component';
 
 const router:Routes = [
   {path: '', component:CarruselComponent },
-  {path: 'pasteleros', component:PasteleroslistComponent}
 ];
 
 @NgModule({
@@ -24,7 +23,7 @@ const router:Routes = [
     NavbarComponent,
     CarruselComponent,
     MainComponent,
-    PasteleroslistComponent
+    EmpleadosListComponent
   ],
   imports: [
     BrowserModule,
