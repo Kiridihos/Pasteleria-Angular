@@ -20,7 +20,8 @@ import { TipoEmpleadoFormComponent } from './components/tipo-empleado-form/tipo-
 const router:Routes = [
   {path: '', component:CarruselComponent },
   {path: 'empleados/new', component:EmpleadosFormComponent},
-  {path: 'clientes/new', component:ClientesFormComponent}
+  {path: 'clientes/new', component:ClientesFormComponent},
+  {path: 'tipos_empleado/new', component: TipoEmpleadoFormComponent}
 ];
 
 @NgModule({
@@ -31,7 +32,7 @@ const router:Routes = [
     MainComponent,
     EmpleadosListComponent,
     EmpleadosFormComponent,
-    ClientesFormComponent
+    ClientesFormComponent,
     TipoEmpleadoComponent,
     TipoEmpleadoFormComponent
   ],
