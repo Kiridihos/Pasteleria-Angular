@@ -14,9 +14,15 @@ body {
 	font-family: 'Cookie', cursive;
 	font-size: 2em;
 }
-.carousel-item {
+.carousel-item {	
 	object-fit: cover;
 }
+
 #carouselModels.carousel-item img {
 	height: 600px;
+}
+
+.carousel-inner img {
+    width: 100%;
+    max-height: 650px;
 }

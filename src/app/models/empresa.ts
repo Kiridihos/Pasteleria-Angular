@@ -1,9 +1,11 @@
+import { Persona } from "./persona";
+
 export class Empresa {
-    constructor(public id?:number, public nombre?:string,
-        public dirrecion?:string)
+    constructor(public nit?:number, public nombre?:string,
+        public direccion?:string, public persona?:Persona)
     {
-        this.id = id;
+        this.nit = nit;
         this.nombre = nombre;
-        this.dirrecion = dirrecion;
+        this.direccion = direccion;
     }
 }

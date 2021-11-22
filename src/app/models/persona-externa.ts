@@ -1,7 +1,9 @@
+import { Persona } from "./persona";
 export class PersonaExterna {
     constructor(public id?:String, public cedula?:number,
         public nombres?:String,public apellidos?:String,
-        public dir?:String,public fechaNac?:Date)
+        public dir?:String,public fechaNac?:Date,
+        public persona?:Persona)
     {
         this.id = id;
         this.cedula = cedula;
@@ -9,5 +11,6 @@ export class PersonaExterna {
         this.apellidos = apellidos;
         this.dir = dir;
         this.fechaNac = fechaNac;
+        this.persona = persona;
     }
 }
