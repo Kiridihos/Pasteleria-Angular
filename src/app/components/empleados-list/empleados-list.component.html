@@ -1,1 +1,32 @@
-<p>empleados-list works!</p>
+<div class="my-4">
+    <h1 class="display-4">Lista de empleados</h1>
+    <hr>
+    <div class="table-responsive mt-4">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>ID de Empleado</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Salario actual</th>
+                    <th>Tipo de empleado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let empleado of empleados">
+                    <td>{{ empleado.id }}</td>
+                    <td>{{ empleado.nombres}}</td>
+                    <td>{{ empleado.apellidos}}</td>
+                    <td>
+                        ${{empleado.salarioActual | number }}</td>
+                    <td>{{ empleado.tipoEmpleado!.descripcion }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger me-2" (click)="delete(empleado)">Eliminar</button>
+                        <button class="btn btn-sm btn-warning">Editar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Empleado } from 'src/app/models/empleado';
 import { EmpleadoService } from 'src/app/services/empleado.service';
+import { TipoEmpleado } from 'src/app/models/tipo-empleado';
+import { TipoEmpleadoService } from 'src/app/services/tipo-empleado.service';
 
 @Component({
   selector: 'app-empleados-form',
@@ -11,12 +13,21 @@ import { EmpleadoService } from 'src/app/services/empleado.service';
 })
 export class EmpleadosFormComponent implements OnInit {
   empleado:Empleado;
-  constructor(private empleadoService:EmpleadoService, private router:Router, private activate:ActivatedRoute) { 
+  tipos:TipoEmpleado[];
+  constructor(private empleadoService:EmpleadoService, private tipoService:TipoEmpleadoService, private router:Router, private activate:ActivatedRoute) { 
     this.empleado = new Empleado();
+    this.tipos = [];
   }
 
   ngOnInit(): void {
     this.cargarEmpleado();
+    this.getTipos();
+  }
+
+  getTipos():void{
+    this.tipoService.getEmpleados().subscribe(
+      tipos => this.tipos = tipos
+    );
   }
 
   create():void{
@@ -26,7 +37,7 @@ export class EmpleadosFormComponent implements OnInit {
         Swal.fire(
           {
             title: 'Eres una chimba',
-            text: 'Creaste un pastel ome',
+            text: 'Creaste un empleado ome',
             icon: 'success',
             confirmButtonText: 'Melo'
           }
@@ -35,7 +46,7 @@ export class EmpleadosFormComponent implements OnInit {
     );
   }
 
-  cargarEmpleado(){
+  cargarEmpleado():void{
 
   }
 

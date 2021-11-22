@@ -35,4 +35,13 @@ export class EmpleadoService {
       }
     );
   }
+
+  delete(id:string): Observable<Empleado>{
+    return this.http.delete<Empleado>(
+      this.urlEndPoint + id,
+      {
+        headers: this.header
+      }
+    );
+  }
 }
