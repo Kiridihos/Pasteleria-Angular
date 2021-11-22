@@ -22,7 +22,11 @@ const router:Routes = [
   {path: 'empleados', component:EmpleadosListComponent},
   {path: 'empleados/new', component:EmpleadosFormComponent},
   {path: 'clientes/new', component:ClientesFormComponent},
+<<<<<<< HEAD
+  {path: 'tipos_empleado/new', component:TipoEmpleadoFormComponent}
+=======
   {path: 'tipos_empleado/new', component: TipoEmpleadoFormComponent}
+>>>>>>> 02c254670fc02248d7336bd1f23874277ccebd25
 ];
 
 @NgModule({
