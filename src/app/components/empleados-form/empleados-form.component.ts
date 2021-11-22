@@ -44,10 +44,51 @@ export class EmpleadosFormComponent implements OnInit {
         );
       }
     );
-  }
-
+  }  
   cargarEmpleado():void{
-
+  }
+  check():void{
+    if(this.isCheckInputs()){
+      this.create();
+    }
+  }
+  isCheckInputs():boolean{
+    var alphaExp = /^[a-zA-Za\s]+$/
+    if(this.empleado.nombres==null ||this.empleado.apellidos==null ||this.empleado.salarioActual==null){
+      Swal.fire(
+        {
+          title: 'CAMPOS VACIOS',
+          text: 'no pueden haber campos vacios',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }else if (this.empleado.nombres?.charAt(0).match(/[\s]/)
+      ||this.empleado.nombres?.charAt(this.empleado.nombres.length-1).match(/[\s]/)
+      ||this.empleado.apellidos?.charAt(0).match(/[\s]/) 
+      ||this.empleado.apellidos?.charAt(this.empleado.apellidos.length-1).match(/[\s]/) ){
+        Swal.fire(
+          {
+            title: 'CAMPOS CON ESPACIOS',
+            text: 'los campos no pueden empezar/terminar con espacios',
+            icon: 'error',
+            confirmButtonText: 'Volver'
+          }
+        );
+        return false;
+    }else if(!this.empleado.nombres.match(alphaExp) || !this.empleado.apellidos.match(alphaExp)){
+      Swal.fire(
+        {
+          title: 'VALORES INVALIDOS',
+          text: 'nombres/apellidos solo pueden tener letras',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }
+    return true;
   }
 
 }

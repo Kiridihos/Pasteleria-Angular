@@ -13,6 +13,7 @@
                 <label for="salario actual">Salario Actual</label>
                 <input type="number" name="salarioActual" id="salarioActual" class="form-control" placeholder="Salario actual..." [(ngModel)]="empleado.salarioActual">
             </div>
+
             <div class="form-group my-3">
                 <label for="tipoEmpleado">Tipo de empleado</label>
                 <select name="tipoEmpleado" id="tipoEmpleado" class="form-control" [(ngModel)]="empleado.tipoEmpleado">
@@ -22,7 +23,7 @@
                     </option>
                 </select>
             </div>
-           <button class="btn btn-primary" (click)="create()">Guardar</button>
+           <button class="btn btn-primary" (click)="check()">Guardar</button>
         </form>
     </div>
 </div>
