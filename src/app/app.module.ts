@@ -14,14 +14,15 @@ import { CarruselComponent } from './components/carrusel/carrusel.component';
 import { EmpleadosListComponent } from './components/empleados-list/empleados-list.component';
 import { EmpleadosFormComponent } from './components/empleados-form/empleados-form.component';
 import { ClientesFormComponent } from './components/clientes-form/clientes-form.component';
-import { TipoEmpleadoComponent } from './components/tipo-empleado/tipo-empleado.component';
 import { TipoEmpleadoFormComponent } from './components/tipo-empleado-form/tipo-empleado-form.component';
+import { TipoEmpleadoListComponent } from './components/tipo-empleado-list/tipo-empleado-list.component';
 
 const router:Routes = [
   {path: '', component:CarruselComponent },
   {path: 'empleados', component:EmpleadosListComponent},
   {path: 'empleados/new', component:EmpleadosFormComponent},
   {path: 'clientes/new', component:ClientesFormComponent},
+  {path: 'tipos_empleado', component: TipoEmpleadoListComponent},
   {path: 'tipos_empleado/new', component: TipoEmpleadoFormComponent}
 ];
 
@@ -34,8 +35,8 @@ const router:Routes = [
     EmpleadosListComponent,
     EmpleadosFormComponent,
     ClientesFormComponent,
-    TipoEmpleadoComponent,
-    TipoEmpleadoFormComponent
+    TipoEmpleadoFormComponent,
+    TipoEmpleadoListComponent
   ],
   imports: [
     BrowserModule,
