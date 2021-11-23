@@ -24,6 +24,7 @@ import { IngredienteListComponent } from './components/ingrediente-list/ingredie
 import { TipoEmpleadoListComponent } from './components/tipo-empleado-list/tipo-empleado-list.component';
 import { OrdenFormComponent } from './components/orden-form/orden-form.component';
 import { OrdenListComponent } from './components/orden-list/orden-list.component';
+import { ClientesListComponent } from './components/clientes-list/clientes-list.component';
 
 const router:Routes = [
   {path: '', component:CarruselComponent },
@@ -59,7 +60,8 @@ const router:Routes = [
     IngredienteListComponent,
     TipoEmpleadoListComponent,
     OrdenFormComponent,
-    OrdenListComponent
+    OrdenListComponent,
+    ClientesListComponent
   ],
   imports: [
     BrowserModule,
