@@ -13,10 +13,12 @@ import { TipoEmpleadoService } from 'src/app/services/tipo-empleado.service';
 })
 export class EmpleadosFormComponent implements OnInit {
   empleado:Empleado;
+  title:string;
   tipos:TipoEmpleado[];
   constructor(private empleadoService:EmpleadoService, private tipoService:TipoEmpleadoService, private router:Router, private activate:ActivatedRoute) { 
     this.empleado = new Empleado();
     this.tipos = [];
+    this.title = '';
   }
 
   ngOnInit(): void {
@@ -53,6 +55,10 @@ export class EmpleadosFormComponent implements OnInit {
           this.empleadoService.getEmpleado(id).subscribe(
             empleado => this.empleado = empleado
           );
+          this.title = 'Editar empleado';
+        }
+        else {
+          this.title = 'Registrar empleado';
         }
       }
     );
