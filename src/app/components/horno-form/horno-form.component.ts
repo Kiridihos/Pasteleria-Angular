@@ -26,7 +26,7 @@ export class HornoFormComponent implements OnInit {
         Swal.fire(
           {
             title: 'Nea eres una chimba ',
-            text: 'Creaste un horno ome',
+            text: 'Creaste un horno ome ome ome ',
             icon: 'success',
             confirmButtonText: 'Melo'
           }
@@ -49,8 +49,45 @@ export class HornoFormComponent implements OnInit {
   }
 
   check():void{
-    this.create();
+    if(this.isCheckInputs()){
+      this.create();
     }
+  }  
+  isCheckInputs():boolean{
+    var alphaExp = /^[a-zA-Za\s]+$/
+    if(this.horno.marca==null || this.horno.vEstimadoActual==null){
+      Swal.fire(
+        {
+          title: 'CAMPOS VACIOS',
+          text: 'no pueden haber campos vacios',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }else if(this.horno.marca.charAt(0).match(/[\s]/) 
+    || this.horno.marca.charAt(this.horno.marca.length-1).match(/[\s]/)){
+      Swal.fire(
+        {
+          title: 'CAMPOS CON ESPACIOS',
+          text: 'los campos no pueden empezar/terminar con espacios',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }else if(! this.horno.marca.match(alphaExp)){
+      Swal.fire(
+        {
+          title: 'VALORES INVALIDOS',
+          text: 'las marcas solo pueden tener letras',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }
+    return true;
   }
-
+}
 
