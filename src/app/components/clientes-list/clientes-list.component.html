@@ -1,16 +1,155 @@
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-  </div>
+<div class="row my-4">
+    <h1 class="display-4">{{title}}</h1>
+    <hr>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#empresas" type="button" role="tab" aria-controls="home" aria-selected="true" (click)="loadEmpresas()">Empresas</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#personasExternas" type="button" role="tab" aria-controls="profile" aria-selected="false" (click)="loadPersonas()">Personas Externas</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="empleados-tab" data-bs-toggle="tab" data-bs-target="#empleados" type="button" role="tab" (click)="loadEmpleados()">Empleados</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane show active" id="empresas" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Empresas</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Esta es una lista de todas las empresas registradas.</h6>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-nowrap w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Nit de la Empresa</th>
+                                            <th>Nombre de la Empresa</th>
+                                            <th>Dirección de la Empresa</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngIf="empresas.length === 0">
+                                            <td colspan="4" class="text-center">
+                                                <h6 class="text-info">
+                                                    No has registrado ninguna empresa. Puedes registrar una
+                                                    <a [routerLink]="['/clientes/new']">aquí.</a>
+                                                </h6>
+                                            </td>
+                                        </tr>
+                                        <tr *ngFor="let empresa of empresas">
+                                            <td>{{empresa.nit}}</td>
+                                            <td>{{empresa.nombre}}</td>
+                                            <td>{{empresa.direccion}}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-danger me-3">Eliminar</button>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="personasExternas" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Personas Externas</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Esta es una lista de todas las personas externas registradas.</h6>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-nowrap w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Documento de identidad</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Dirección</th>
+                                            <th>Fecha de nacimiento</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngIf="personas.length === 0">
+                                            <td colspan="5" class="text-center">
+                                                <h6 class="text-info">
+                                                    No has registrado ninguna persona externa. Puedes registrar una
+                                                    <a [routerLink]="['/clientes/new']">aquí.</a>
+                                                </h6>
+                                            </td>
+                                        </tr>
+                                        <tr *ngFor="let persona of personas">
+                                            <td>{{persona.cedula}}</td>
+                                            <td>{{persona.nombres}}</td>
+                                            <td>{{persona.apellidos}}</td>
+                                            <td>{{persona.dir}}</td>
+                                            <td>{{persona.fechaNac | date: 'yyyy-MM-dd'}}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-danger me-3">Eliminar</button>
+                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="empleados" role="tabpanel">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Empleados</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Esta es una lista de todos los empleados registrados.</h6>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-nowrap w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Salario actual</th>
+                                            <th>Tipo de empleado</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngIf="empleados.length === 0">
+                                            <td colspan="4" class="text-center">
+                                                <h6 class="text-info">
+                                                    No has registrado ningún empleado. Puedes registrar uno
+                                                    <a [routerLink]="['/empleados/new']">aquí.</a>
+                                                </h6>
+                                            </td>
+                                        </tr>
+                                        <tr *ngFor="let empleado of empleados">
+                                            <td>{{empleado.nombres}}</td>
+                                            <td>{{empleado.apellidos}}</td>
+                                            <td>${{empleado.salarioActual | number}}</td>
+                                            <td>{{empleado.tipoEmpleado!.descripcion}}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-danger me-3" (click)="deleteEmpleado(empleado)">Eliminar</button>
+                                                <button class="btn btn-sm btn-warning" [routerLink]="['/empleados/update', empleado.id]">Editar</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+</div>
