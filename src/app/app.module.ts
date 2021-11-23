@@ -26,6 +26,7 @@ import { OrdenFormComponent } from './components/orden-form/orden-form.component
 import { OrdenListComponent } from './components/orden-list/orden-list.component';
 import { ClientesListComponent } from './components/clientes-list/clientes-list.component';
 
+
 const router:Routes = [
   {path: '', component:CarruselComponent },
   {path: 'empleados', component:EmpleadosListComponent},
@@ -41,7 +42,8 @@ const router:Routes = [
   {path: 'tipos_empleado', component: TipoEmpleadoListComponent},
   {path: 'tipos_empleado/new', component: TipoEmpleadoFormComponent},
   {path: 'ordenes/new', component: OrdenFormComponent},
-  {path: 'ordenes', component: OrdenListComponent}
+  {path: 'ordenes', component: OrdenListComponent},
+  {path: 'clientes', component: ClientesListComponent}
 ];
 
 @NgModule({
