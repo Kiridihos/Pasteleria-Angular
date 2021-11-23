@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./clientes-form.component.css']
 })
 export class ClientesFormComponent implements OnInit {
+  fechaNac:Date;
   empresa: Empresa;
   persona: PersonaExterna;
   tiposCliente: any[];
@@ -22,6 +23,7 @@ export class ClientesFormComponent implements OnInit {
     private personaService:PersonaExternaService,
     private router:Router, private activate: ActivatedRoute) 
     { 
+      this.fechaNac = new Date();
       this.empresa = new Empresa();
       this.persona = new PersonaExterna();
       this.tiposCliente = ['Empresa', 'Persona externa']
@@ -78,6 +80,23 @@ export class ClientesFormComponent implements OnInit {
         );
       }
     );
+  }
+
+  processDate():string{
+    let fecha = '';
+    let fechaAnt = new Date(this.fechaNac);
+    let fechaString = fechaAnt.toDateString();
+    let y = fechaAnt.getFullYear().toString();
+    fecha += y;
+    fecha += '-';
+    let m = fechaAnt.getMonth().toString();
+    fecha += m;
+    fecha += '-'
+    let d = fechaAnt.getDay().toString();
+    fecha += y;
+    fecha += ' 00:00:00'
+    console.log(fecha);
+    return fecha;
   }
 
   crearPersona():void{
@@ -145,6 +164,7 @@ export class ClientesFormComponent implements OnInit {
     }
   
   isCheckPersonaInputs():boolean{
+    this.persona.fechaNac = this.processDate();
     var alphaExp = /^[a-zA-Za\s]+$/;
     if(this.persona.cedula==null||this.persona.nombres==null||this.persona.apellidos==null
         ||this.persona.dir==null||this.persona.fechaNac==null ){
