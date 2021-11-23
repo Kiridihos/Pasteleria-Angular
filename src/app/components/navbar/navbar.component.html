@@ -35,6 +35,16 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" [routerLink]="['/pasteleros']">Ver todos los pasteles</a></li>
+                <div class="dropdown-divider"></div>
+                <li>
+                  <a [routerLink]="['/hornos/new']" class="dropdown-item">Registrar horno</a>
+                  <a [routerLink]="['/hornos']" class="dropdown-item">Ver todos los hornos</a>
+                </li>
+                <div class="dropdown-divider"></div>
+                <li>
+                  <a [routerLink]="['/ingredientes/new']" class="dropdown-item">Registrar ingrediente</a>
+                  <a [routerLink]="['/ingredientes']" class="dropdown-item">Ver todos los ingredientes</a>
+                </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
