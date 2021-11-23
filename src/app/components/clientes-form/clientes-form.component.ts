@@ -95,5 +95,95 @@ export class ClientesFormComponent implements OnInit {
       }
     );
   }
-
+  checkEmpresa():void{
+    if(this.isCheckEmpresaInputs()){
+      this.crearEmpresa();
+    }
+  }
+  isCheckEmpresaInputs():boolean{
+    var alphaExp = /^[a-zA-Za\s]+$/
+    if(this.empresa.nit==null||this.empresa.nombre==null||this.empresa.direccion==null){
+      Swal.fire(
+        {
+          title: 'CAMPOS VACIOS',
+          text: 'no pueden haber campos vacios',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }else if(this.empresa.nombre?.charAt(0).match(/[\s]/) 
+    || this.empresa.nombre?.charAt( this.empresa.nombre.length-1).match(/[\s]/)
+    || this.empresa.direccion?.charAt(0).match(/[\s]/) 
+    || this.empresa.direccion?.charAt( this.empresa.direccion.length-1).match(/[\s]/)){
+      Swal.fire(
+        {
+          title: 'CAMPOS CON ESPACIOS',
+          text: 'los campos no pueden empezar/terminar con espacios',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }else if(! this.empresa.nombre.match(alphaExp)){
+      Swal.fire(
+        {
+          title: 'VALORES INVALIDOS',
+          text: 'El nombre solo pueden tener letras',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }
+    return true;
+  }
+  checkPersona():void{
+      if(this.isCheckPersonaInputs()) {
+        this.crearPersona();
+      }
+    }
+  
+  isCheckPersonaInputs():boolean{
+    var alphaExp = /^[a-zA-Za\s]+$/;
+    if(this.persona.cedula==null||this.persona.nombres==null||this.persona.apellidos==null
+        ||this.persona.dir==null||this.persona.fechaNac==null ){
+      Swal.fire(
+        {
+          title: 'CAMPOS VACIOS',
+          text: 'no pueden haber campos vacios',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }else if(this.persona.nombres?.charAt(0).match(/[\s]/) 
+    ||this.persona.nombres?.charAt( this.persona.nombres.length-1).match(/[\s]/)
+    ||this.persona.apellidos?.charAt(0).match(/[\s]/) 
+    ||this.persona.apellidos?.charAt( this.persona.apellidos.length-1).match(/[\s]/)
+    ||this.persona.dir?.charAt(0).match(/[\s]/) 
+    ||this.persona.dir?.charAt( this.persona.dir.length-1).match(/[\s]/)
+      ){Swal.fire(
+        {
+          title: 'CAMPOS CON ESPACIOS',
+          text: 'los campos no pueden empezar/terminar con espacios',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }else if(! this.persona.nombres.match(alphaExp) || !this.persona.apellidos.match(alphaExp)){
+      Swal.fire(
+        {
+          title: 'VALORES INVALIDOS',
+          text: 'nombre/apellidos solo pueden tener letras',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }else{
+      return true;     
+    }
+  }
 }

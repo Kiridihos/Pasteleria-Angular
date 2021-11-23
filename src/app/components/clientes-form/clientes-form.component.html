@@ -10,7 +10,7 @@
                 <form>
                     <div class="form-group my-3">
                         <label for="nit">NIT de la empresa</label>
-                        <input type="text" [(ngModel)]="empresa.nit" name="nit" id="nit" class="form-control" placeholder="NIT de la empresa">
+                        <input type="number" [(ngModel)]="empresa.nit" name="nit" id="nit" class="form-control" placeholder="NIT de la empresa">
                     </div>
                     <div class="form-group my-3">
                         <label for="nombre">Nombre de la empresa</label>
@@ -20,14 +20,14 @@
                         <label for="direccion">Dirección de la empresa</label>
                         <input type="text" [(ngModel)]="empresa.direccion" name="direccion" id="direccion" class="form-control" placeholder="Dirección de la empresa">
                     </div>
-                   <button class="btn btn-primary" (click)="crearEmpresa()">Guardar</button>
+                   <button class="btn btn-primary" (click)="checkEmpresa()">Guardar</button>
                 </form>
             </div>
             <div *ngSwitchCase="'Persona externa'">
                 <form>
                     <div class="form-group my-3 ">
                         <label for="cedula">Cedula de la persona</label>
-                        <input type="text" [(ngModel)]="persona.cedula" name="cedula" id="cedula" class="form-control" placeholder="Cedula">
+                        <input type="number" [(ngModel)]="persona.cedula" name="cedula" id="cedula" class="form-control" placeholder="Cedula">
                     </div>
                     <div class="form-group my-3 ">
                         <label for="nombres">Nombres de la persona externa</label>
@@ -43,9 +43,12 @@
                     </div>
                     <div class="form-group my-3 ">
                         <label for="fechaNac">Fecha de nacimiento</label>
-                        <input type="text" [(ngModel)]="persona.fechaNac" name="fechaNac" id="fechaNac" class="form-control" placeholder="Fecha de nacimiento">
+                        <input type="date" [(ngModel)]="persona.fechaNac" name="fechaNac" id="fechaNac" class="form-control" placeholder="Fecha de nacimiento">
+                        <label>
+                            {{ persona.fechaNac | date:'yyyy-MM-dd HH:mm:ss-SS' }}
+                          </label>
                     </div>
-                   <button class="btn btn-primary" (click)="crearPersona()">Guardar</button>
+                   <button class="btn btn-primary" (click)="checkPersona()">Guardar</button>
                 </form>
             </div>
             <div *ngSwitchDefault>

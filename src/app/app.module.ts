@@ -14,12 +14,12 @@ import { CarruselComponent } from './components/carrusel/carrusel.component';
 import { EmpleadosListComponent } from './components/empleados-list/empleados-list.component';
 import { EmpleadosFormComponent } from './components/empleados-form/empleados-form.component';
 import { ClientesFormComponent } from './components/clientes-form/clientes-form.component';
-import { TipoEmpleadoComponent } from './components/tipo-empleado/tipo-empleado.component';
 import { TipoEmpleadoFormComponent } from './components/tipo-empleado-form/tipo-empleado-form.component';
 import { HornosListComponent } from './components/hornos-list/hornos-list.component';
 import { HornoFormComponent } from './components/horno-form/horno-form.component';
 import { IngredienteFormComponent } from './components/ingrediente-form/ingrediente-form.component';
 import { IngredienteListComponent } from './components/ingrediente-list/ingrediente-list.component';
+import { TipoEmpleadoListComponent } from './components/tipo-empleado-list/tipo-empleado-list.component';
 
 const router:Routes = [
   {path: '', component:CarruselComponent },
@@ -27,14 +27,14 @@ const router:Routes = [
   {path: 'empleados/new', component:EmpleadosFormComponent},
   {path: 'empleados/update/:id', component:EmpleadosFormComponent},
   {path: 'clientes/new', component:ClientesFormComponent},
-  {path: 'tipos_empleado/new', component: TipoEmpleadoFormComponent},
   {path: 'hornos', component: HornosListComponent},
   {path: 'hornos/new', component: HornoFormComponent},
   {path: 'hornos/update/:id', component: HornoFormComponent},
   {path: 'ingredientes', component: IngredienteListComponent},
   {path: 'ingredientes/new', component: IngredienteFormComponent},
-  {path: 'ingredientes/update/:id', component: IngredienteFormComponent}
-  
+  {path: 'ingredientes/update/:id', component: IngredienteFormComponent},
+  {path: 'tipos_empleado', component: TipoEmpleadoListComponent},
+  {path: 'tipos_empleado/new', component: TipoEmpleadoFormComponent}
 ];
 
 @NgModule({
@@ -46,12 +46,12 @@ const router:Routes = [
     EmpleadosListComponent,
     EmpleadosFormComponent,
     ClientesFormComponent,
-    TipoEmpleadoComponent,
     TipoEmpleadoFormComponent,
     HornosListComponent,
     HornoFormComponent,
     IngredienteFormComponent,
-    IngredienteListComponent
+    IngredienteListComponent,
+    TipoEmpleadoListComponent
   ],
   imports: [
     BrowserModule,

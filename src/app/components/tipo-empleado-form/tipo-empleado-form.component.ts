@@ -26,7 +26,7 @@ export class TipoEmpleadoFormComponent implements OnInit {
         Swal.fire(
           {
             title: 'Nea eres una chimba ',
-            text: 'Creaste un empleado ome',
+            text: 'Creaste un tipo de empleado ome',
             icon: 'success',
             confirmButtonText: 'Melo'
           }

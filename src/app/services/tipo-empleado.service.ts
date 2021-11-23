@@ -35,5 +35,14 @@ export class TipoEmpleadoService {
       }
     );
   }
+
+  delete(id:number): Observable<TipoEmpleado>{
+    return this.http.delete<TipoEmpleado>(
+      this.urlEndPoint + id.toString(),
+      {
+        headers: this.header
+      }
+    );
+  }
 }
 

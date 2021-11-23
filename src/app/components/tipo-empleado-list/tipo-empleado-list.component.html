@@ -1,0 +1,24 @@
+<div class="my-4">
+    <h1 class="display-4">Lista de tipos de empleados</h1>
+    <hr>
+    <div class="table-responsive mt-4">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>ID del tipo de empleado</th>
+                    <th>TipoEmpleado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tipoEmpleado of tipoEmpleados">
+                    <td>{{ tipoEmpleado.id }}</td>
+                    <td>{{ tipoEmpleado.descripcion}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger me-2" (click)="delete(tipoEmpleado)">Eliminar</button>
+                        <button class="btn btn-sm btn-warning">Editar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
