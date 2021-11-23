@@ -22,6 +22,8 @@ import { HornoFormComponent } from './components/horno-form/horno-form.component
 import { IngredienteFormComponent } from './components/ingrediente-form/ingrediente-form.component';
 import { IngredienteListComponent } from './components/ingrediente-list/ingrediente-list.component';
 import { TipoEmpleadoListComponent } from './components/tipo-empleado-list/tipo-empleado-list.component';
+import { OrdenFormComponent } from './components/orden-form/orden-form.component';
+import { OrdenListComponent } from './components/orden-list/orden-list.component';
 
 const router:Routes = [
   {path: '', component:CarruselComponent },
@@ -36,7 +38,9 @@ const router:Routes = [
   {path: 'ingredientes/new', component: IngredienteFormComponent},
   {path: 'ingredientes/update/:id', component: IngredienteFormComponent},
   {path: 'tipos_empleado', component: TipoEmpleadoListComponent},
-  {path: 'tipos_empleado/new', component: TipoEmpleadoFormComponent}
+  {path: 'tipos_empleado/new', component: TipoEmpleadoFormComponent},
+  {path: 'ordenes/new', component: OrdenFormComponent},
+  {path: 'ordenes', component: OrdenListComponent}
 ];
 
 @NgModule({
@@ -53,7 +57,9 @@ const router:Routes = [
     HornoFormComponent,
     IngredienteFormComponent,
     IngredienteListComponent,
-    TipoEmpleadoListComponent
+    TipoEmpleadoListComponent,
+    OrdenFormComponent,
+    OrdenListComponent
   ],
   imports: [
     BrowserModule,
