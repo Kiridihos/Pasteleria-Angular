@@ -45,7 +45,7 @@
                                             <td>{{empresa.direccion}}</td>
                                             <td>
                                                 <button class="btn btn-sm btn-danger me-3">Eliminar</button>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-warning" [routerLink]="['/clientes/update', empresa.nit]">Editar</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -68,6 +68,7 @@
                                 <table class="table table-hover table-nowrap w-100">
                                     <thead>
                                         <tr>
+                                            <th>ID</th>
                                             <th>Documento de identidad</th>
                                             <th>Nombres</th>
                                             <th>Apellidos</th>
@@ -86,6 +87,7 @@
                                             </td>
                                         </tr>
                                         <tr *ngFor="let persona of personas">
+                                            <td>{{persona.id}}</td>
                                             <td>{{persona.cedula}}</td>
                                             <td>{{persona.nombres}}</td>
                                             <td>{{persona.apellidos}}</td>
@@ -93,7 +95,7 @@
                                             <td>{{persona.fechaNac | date: 'yyyy-MM-dd'}}</td>
                                             <td>
                                                 <button class="btn btn-sm btn-danger me-3">Eliminar</button>
-                                                <button class="btn btn-sm btn-warning">Editar</button>
+                                                <button class="btn btn-sm btn-warning" [routerLink]="['/clientes/update', persona.id]">Editar</button>
                                             </td>
                                         </tr>
                                     </tbody>

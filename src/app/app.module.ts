@@ -32,6 +32,9 @@ const router:Routes = [
   {path: 'empleados/new', component:EmpleadosFormComponent},
   {path: 'empleados/update/:id', component:EmpleadosFormComponent},
   {path: 'clientes/new', component:ClientesFormComponent},
+  {path: 'clientes/update/:nit', component:ClientesFormComponent},
+  {path: 'clientes/update/:id', component:ClientesFormComponent},
+  {path: 'clientes', component: ClientesListComponent},
   {path: 'hornos', component: HornosListComponent},
   {path: 'hornos/new', component: HornoFormComponent},
   {path: 'hornos/update/:id', component: HornoFormComponent},
@@ -40,7 +43,6 @@ const router:Routes = [
   {path: 'ingredientes/update/:id', component: IngredienteFormComponent},
   {path: 'tipos_empleado', component: TipoEmpleadoListComponent},
   {path: 'tipos_empleado/new', component: TipoEmpleadoFormComponent},
-  {path: 'clientes', component: ClientesListComponent},
   {path: 'pedidos/new', component: PedidoFormComponent},
   {path: 'pedidos', component: PedidoListComponent}
 ];

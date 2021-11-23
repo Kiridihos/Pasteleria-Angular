@@ -22,9 +22,13 @@ export class PersonaExternaService {
   }
 
   getPersonaExterna(id:string):Observable<PersonaExterna>{
-    return this.http.get<PersonaExterna>(
+    let result = this.http.get<PersonaExterna>(
       this.urlEndPoint + id
     );
+    result.subscribe(
+      val => console.log(val)
+    );
+    return result;
   } 
 
   create(personaExterna:PersonaExterna): Observable<PersonaExterna>{

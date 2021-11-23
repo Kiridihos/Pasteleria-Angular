@@ -32,7 +32,7 @@ export class ClientesFormComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.cargarEmpresa();
+    this.cargarCliente();
   }
 
   selectedType():void{
@@ -40,14 +40,29 @@ export class ClientesFormComponent implements OnInit {
     console.log(this.selected);
   }
 
-  cargarEmpresa():void{
+  esNumero(value:string|number):boolean{
+    return ((value != null) && (value !== '') &&
+      !isNaN(Number(value.toString())));
+  }
+
+  cargarCliente():void{
     this.activate.params.subscribe(
       params => {
-        let nit = params['nit'];
-        if (nit) {
-          this.empresaService.getEmpresa(nit).subscribe(
-            empresa => this.empresa = empresa
-          );
+        let identificador = params['nit'];
+        if (identificador) {
+          if (this.esNumero(identificador)) {
+            this.empresaService.getEmpresa(identificador).subscribe(
+              empresa => this.empresa = empresa
+            );
+            this.selected = 'Empresa';
+          }
+          else {
+            this.personaService.getPersonaExterna(identificador).subscribe(
+              persona => this.persona = persona
+            );
+            console.log(this.persona);
+            this.selected = 'Persona externa';
+          }
         }
       }
     );
