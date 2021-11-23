@@ -1,0 +1,16 @@
+<div class="row pt-5">
+    <div class="col-12">
+        <form>
+            <div class="form-group my-3 ">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre..." [(ngModel)]="ingrediente.nombre">
+            </div>
+            <div class="form-group my-3 ">
+                <label for="vEstimadoActual">Unidades</label>
+                <input type="num" name="uMed" id="uMed" class="form-control" placeholder="Unidades..." [(ngModel)]="ingrediente.uMed">
+            </div>
+           <button class="btn btn-primary" (click)="check()">Guardar</button>
+        </form>
+    </div>
+</div>
+

@@ -46,7 +46,18 @@ export class EmpleadosFormComponent implements OnInit {
     );
   }  
   cargarEmpleado():void{
+    this.activate.params.subscribe(
+      params => {
+        let id = params['id'];
+        if (id) {
+          this.empleadoService.getEmpleado(id).subscribe(
+            empleado => this.empleado = empleado
+          );
+        }
+      }
+    );
   }
+
   check():void{
     if(this.isCheckInputs()){
       this.create();

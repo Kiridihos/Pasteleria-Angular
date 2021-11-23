@@ -1,0 +1,15 @@
+<div class="row pt-5">
+    <div class="col-12">
+        <form>
+            <div class="form-group my-3 ">
+                <label for="marca">Marca</label>
+                <input type="text" name="marca" id="marca" class="form-control" placeholder="Marca..." [(ngModel)]="horno.marca">
+            </div>
+            <div class="form-group my-3 ">
+                <label for="vEstimadoActual">Valor estimado</label>
+                <input type="num" name="vEstimadoActual" id="vEstimadoActual" class="form-control" placeholder="Valor estimado..." [(ngModel)]="horno.vEstimadoActual">
+            </div>
+           <button class="btn btn-primary" (click)="check()">Guardar</button>
+        </form>
+    </div>
+</div>

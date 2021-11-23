@@ -1,0 +1,29 @@
+<div class="my-4">
+    <h1 class="display-4">Lista de hornos</h1>
+    <hr>
+    <div class="table-responsive mt-4">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>ID de Horno</th>
+                    <th>Marca</th>
+                    <th>Valor estimado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let horno of hornos">
+                    <td>{{ horno.id }}</td>
+                    <td>{{ horno.marca}}</td>
+                    <td>{{ horno.vEstimadoActual}}</td>
+                    
+                    <td>
+                        <button class="btn btn-sm btn-danger me-2" (click)="delete(horno)">Eliminar</button>
+                        <button class="btn btn-sm btn-warning" [routerLink]="['/hornos/update', horno.id]">Editar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
