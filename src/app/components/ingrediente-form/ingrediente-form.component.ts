@@ -26,7 +26,7 @@ export class IngredienteFormComponent implements OnInit {
         Swal.fire(
           {
             title: 'Nea eres una chimba ',
-            text: 'Creaste un ingrediente ome',
+            text: 'Creaste un ingrediente de medallo ome',
             icon: 'success',
             confirmButtonText: 'Melo'
           }
@@ -47,8 +47,44 @@ export class IngredienteFormComponent implements OnInit {
       }
     );
   }
-
   check():void{
-    this.create();
+    if(this.isCheckInputs()){
+      this.create();
     }
   }
+  isCheckInputs():boolean{
+    var alphaExp = /^[a-zA-Za\s]+$/
+    if(this.ingrediente.nombre==null || this.ingrediente.uMed==null){
+      Swal.fire(
+        {
+          title: 'CAMPOS VACIOS',
+          text: 'no pueden haber campos vacios',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }else if(this.ingrediente.nombre.charAt(0).match(/[\s]/) || this.ingrediente.nombre.charAt( this.ingrediente.nombre.length-1).match(/[\s]/)){
+      Swal.fire(
+        {
+          title: 'CAMPOS CON ESPACIOS',
+          text: 'los campos no pueden empezar/terminar con espacios',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }else if(! this.ingrediente.nombre.match(alphaExp)){
+      Swal.fire(
+        {
+          title: 'VALORES INVALIDOS',
+          text: 'nombres/apellidos solo pueden tener letras',
+          icon: 'error',
+          confirmButtonText: 'Volver'
+        }
+      );
+      return false;
+    }
+    return true;
+  }
+}
