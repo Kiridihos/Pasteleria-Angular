@@ -1,0 +1,21 @@
+<div class="row my-4">
+    <h1 class="display-4 text-lg-center">{{ title }}</h1>
+    <hr />
+    <div class="col-sm-12 col-lg-8 offset-lg-2">
+      <form>
+        <div class="form-group my-3">
+          <label for="descripcion">Descripcion</label>
+          <input
+            type="text"
+            name="descripcion"
+            id="descripcion"
+            class="form-control"
+            placeholder="Descripción..."
+            [(ngModel)]="tipoPastel.descripcion"
+          />
+        </div>
+        <button class="btn btn-primary" (click)="check()">Guardar</button>
+      </form>
+    </div>
+  </div>
+  
