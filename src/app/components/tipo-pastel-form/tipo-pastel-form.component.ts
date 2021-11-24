@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { TipoPastel } from 'src/app/models/tipo-pastel';
 import {TipoPastelService } from 'src/app/services/tipo-pastel.service';
+import { Pastel } from 'src/app/models/pastel';
+import { PastelService } from 'src/app/services/pastel.service';
 
 @Component({
   selector: 'app-tipo-pastel-form',
@@ -10,19 +12,28 @@ import {TipoPastelService } from 'src/app/services/tipo-pastel.service';
   styleUrls: ['./tipo-pastel-form.component.css']
 })
 export class TipoPastelFormComponent implements OnInit {
-  tipoPastel: TipoPastel;
+  pastel: Pastel;
   title: string;
-  constructor(private tipoPastelService:TipoPastelService, private router:Router, private activate:ActivatedRoute) {
-    this.tipoPastel = new TipoPastel();
+  tipoPastel:TipoPastel[];
+  constructor(private pastelService: PastelService, tipoPastelService:TipoPastelService, private router:Router, private activate:ActivatedRoute) {
+    this.pastel = new TipoPastel();
+    this.tipoPastel = [];
     this.title = 'Registrar el tipo de pastel'
   }
 
   ngOnInit(): void {
-    
+    this.cargarTipoPastel();
+    this.getTipos();
+  }
+
+  getTipos():void{
+    this.tipoPastelService.getPasteles().subscribe(
+      tipoPastel => this.tipoPastel = tipoPastel
+    );
   }
 
   create():void{
-    this.tipoPastelService.create(this.tipoPastel).subscribe(
+    this.pastelService.create(this.pastel).subscribe(
       response => {
         this.router.navigate(['/']);
         Swal.fire(
@@ -42,8 +53,8 @@ export class TipoPastelFormComponent implements OnInit {
       params => {
         let id = params['id'];
         if (id) {
-          this.tipoPastelService.getPastel(id).subscribe(
-            tipoPastel => this.tipoPastel = tipoPastel
+          this.pastelService.getPastel(id).subscribe(
+            pastel => this.pastel = pastel
           );
         }
       }
@@ -52,7 +63,6 @@ export class TipoPastelFormComponent implements OnInit {
 
   check():void{
    this.create();
-    
   }
 
 }

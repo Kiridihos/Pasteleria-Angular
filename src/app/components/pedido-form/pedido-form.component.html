@@ -87,16 +87,6 @@
           />
         </div>
         <div class="form-group my-3">
-          <label for="tipo">Tipo de pastel</label>
-          <input
-            type="text"
-            name="tipo"
-            id="tipo"
-            [(ngModel)]="pastel.tipo"
-            class="form-control"
-          />
-        </div>
-        <div class="form-group my-3">
           <label for="pesoMin">Peso mínimo</label>
           <input
             type="number"
@@ -116,6 +106,20 @@
             class="form-control"
           />
         </div>
+        <div class="form-group my-3">
+            <label for="tipoEmpleado">Tipo de pastel</label>
+            <select
+              name="tipoPastel"
+              id="tipoPastel"
+              class="form-control"
+              [(ngModel)]="tiposPastel"
+            >
+              <option selected>Selecciona un tipo de pastel</option>
+              <option *ngFor="let tipoPastel of tiposPastel" [ngValue]="tiposPastel">
+                {{ tipoPastel.descripcion }}
+              </option>
+            </select>
+          </div>
       </div>
     </form>
   </ng-template>

@@ -1,3 +1,4 @@
+import { TipoPastelService } from './../../services/tipo-pastel.service';
 import { PedidoService } from './../../services/pedido.service';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
@@ -7,6 +8,7 @@ import { Empleado } from 'src/app/models/empleado';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { Pastel } from 'src/app/models/pastel';
 import { isNull } from '@angular/compiler/src/output/output_ast';
+import { TipoPastel } from 'src/app/models/tipo-pastel';
 
 @Component({
   selector: 'app-pedido-form',
@@ -20,8 +22,9 @@ export class PedidoFormComponent implements OnInit {
   pastel: Pastel;
   empleados: Empleado[];
   pasteles: Pastel[];
+  tiposPastel:TipoPastel[];
   constructor(private PedidoService: PedidoService,
-    private empleadoService: EmpleadoService,
+    private empleadoService: EmpleadoService, private tipoPastelService:TipoPastelService,
     private router: Router,
     private activate: ActivatedRoute) {
     this.pedido = new Pedido();
@@ -30,12 +33,20 @@ export class PedidoFormComponent implements OnInit {
     this.pasteles = [];
     this.title = '';
     this.pastelDialog = false;
+    this.tiposPastel = [];
   }
 
   ngOnInit(): void {
     this.cargarPedido();
     this.getEmpleado();
   }
+
+  getTipos():void{
+    this.tipoPastelService.getPasteles().subscribe(
+      tiposPastel => this.tiposPastel = tiposPastel
+    );
+  }
+
 
   getEmpleado():void{
     this.empleadoService.getEmpleados().subscribe(

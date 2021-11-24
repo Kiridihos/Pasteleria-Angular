@@ -27,6 +27,7 @@ import { PedidoListComponent } from './components/pedido-list/pedido-list.compon
 import { PedidoFormComponent } from './components/pedido-form/pedido-form.component';
 import { TipoPastelFormComponent } from './components/tipo-pastel-form/tipo-pastel-form.component';
 
+
 const router:Routes = [
   {path: '', component:CarruselComponent },
   {path: 'empleados', component:EmpleadosListComponent},
@@ -46,7 +47,7 @@ const router:Routes = [
   {path: 'tipos_empleado/new', component: TipoEmpleadoFormComponent},
   {path: 'pedidos/new', component: PedidoFormComponent},
   {path: 'pedidos', component: PedidoListComponent},
-  {path: 'tipos_pastel/new', component: TipoPastelFormComponent}
+  {path: 'tipos_pastel/new', component: TipoPastelFormComponent},
 ];
 
 @NgModule({
