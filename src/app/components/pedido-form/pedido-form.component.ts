@@ -13,6 +13,7 @@ import { Empresa } from 'src/app/models/empresa';
 import { EmpresaService } from 'src/app/services/empresa.service';
 import { PersonaExterna } from 'src/app/models/persona-externa';
 import { PersonaExternaService } from 'src/app/services/persona-externa.service';
+import { PersonaService } from 'src/app/services/persona.service';
 import { AlertHelper } from '../alert-helper';
 
 @Component({
@@ -38,7 +39,8 @@ export class PedidoFormComponent implements OnInit {
     private tipoPastelService: TipoPastelService,
     private pastelService: PastelService,
     private personaService: PersonaExternaService,
-    private empresaService:EmpresaService,
+    private empresaService: EmpresaService,
+    private personasService: PersonaService,
     private router: Router,
     private activate: ActivatedRoute) {
     this.pedido = new Pedido();
@@ -152,9 +154,14 @@ export class PedidoFormComponent implements OnInit {
     );
   }
 
+  asignarPersona(): void {
+    console.log(this.pedido.cliente);
+  }
+
   create(): void{
     this.guardarPasteles();
     this.pedido.fechaEntrega = this.processDate();
+    this.asignarPersona();
     this.PedidoService.create(this.pedido).subscribe(
       response => {
         this.pedidoCreado = response;
