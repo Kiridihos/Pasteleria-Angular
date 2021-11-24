@@ -97,4 +97,68 @@ export class ClientesListComponent implements OnInit {
       }
     );
   }
+
+  deleteEmpresa(empresa:Empresa):void{
+    Swal.fire(
+      {
+        title: 'Estás seguro, parce?',
+        text: 'Esto no tiene vuelta atrás',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Uy zonas',
+        confirmButtonText: 'Sisas'
+      }
+    ).then(
+      (result) => {
+        if (result.isConfirmed) {
+          this.empresaService.delete(empresa.nit!).subscribe(
+            response => {
+              this.empresas = this.empresas.filter(empr => empr != empresa);
+              Swal.fire(
+                {
+                  title: 'Eres una chimba',
+                  text: 'Borraste un empleado ome',
+                  icon: 'success',
+                  confirmButtonText: 'Melo'
+                }
+              );
+            }
+          );
+        }
+      }
+    );
+  }
+
+  deletePersonaExterna(personaExterna:PersonaExterna):void{
+    Swal.fire(
+      {
+        title: 'Estás seguro, parce?',
+        text: 'Esto no tiene vuelta atrás',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Uy zonas',
+        confirmButtonText: 'Sisas'
+      }
+    ).then(
+      (result) => {
+        if (result.isConfirmed) {
+          this.personaExternaService.delete(personaExterna.id!).subscribe(
+            response => {
+              this.personas = this.personas.filter(per => per != personaExterna);
+              Swal.fire(
+                {
+                  title: 'Eres una chimba',
+                  text: 'Borraste un empleado ome',
+                  icon: 'success',
+                  confirmButtonText: 'Melo'
+                }
+              );
+            }
+          );
+        }
+      }
+    );
+  }
+
+  
 }

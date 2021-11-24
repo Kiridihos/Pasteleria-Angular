@@ -40,4 +40,13 @@ export class PersonaExternaService {
       }
     );
   }
+
+  delete(id:string): Observable<PersonaExterna>{
+    return this.http.delete<PersonaExterna>(
+      this.urlEndPoint + id.toString(),
+      {
+        headers: this.header
+      }
+    );
+  }
 }

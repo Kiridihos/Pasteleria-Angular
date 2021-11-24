@@ -37,4 +37,13 @@ export class EmpresaService {
     );
   }
 
+  delete(nit:number): Observable<Empresa>{
+    return this.http.delete<Empresa>(
+      this.urlEndPoint + nit,
+      {
+        headers: this.header
+      }
+    );
+  }
+
 }
