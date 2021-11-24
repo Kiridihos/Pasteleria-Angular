@@ -1,1 +1,31 @@
-<p>pedido-list works!</p>
+<div class="my-4">
+    <h1 class="display-4">Lista de pedidos</h1>
+    <hr>
+    <div class="table-responsive mt-4">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha de solicitud</th>
+                    <th>Fecha de entrega</th>
+                    <th>empleado</th>
+                    <th>cliente</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pedido of pedidos">
+                    <td>{{ pedido.fechaSolicitud }}</td>
+                    <td>{{ pedido.fechaEntrega}}</td>
+                    <td>{{ pedido.empleado}}</td>
+                    <td>{{ pedido.cliente}}</td>
+
+                    
+                    <td>
+                        <button class="btn btn-sm btn-danger me-2" (click)="delete(pedido)">Eliminar</button>
+                        <button class="btn btn-sm btn-warning" [routerLink]="['/ingredientes/update', pedido.id]">Editar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

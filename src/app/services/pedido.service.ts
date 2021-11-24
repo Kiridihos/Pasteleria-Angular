@@ -36,9 +36,9 @@ export class PedidoService {
     );
   }
 
-  delete(id:string): Observable<Pedido>{
+  delete(id:number): Observable<Pedido>{
     return this.http.delete<Pedido>(
-      this.urlEndPoint + id,
+      this.urlEndPoint + id.toString(),
       {
         headers: this.header
       }

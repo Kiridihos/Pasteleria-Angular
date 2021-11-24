@@ -74,7 +74,8 @@ const router:Routes = [
     PedidoFormComponent,
     TipoPastelFormComponent,
     TipoPastelListComponent,
-    PastelListComponent
+    PastelListComponent,
+    
   ],
   imports: [
     BrowserModule,
