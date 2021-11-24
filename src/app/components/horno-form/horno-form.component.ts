@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { Horno } from 'src/app/models/horno';
 import {HornoService } from 'src/app/services/horno.service';
+import { AlertHelper } from '../alert-helper';
+import { ValidationHelper } from '../validation-helper';
 
 @Component({
   selector: 'app-horno-form',
@@ -31,14 +32,7 @@ export class HornoFormComponent implements OnInit {
         else {
           this.router.navigate(['/']);
         }
-        Swal.fire(
-          {
-            title: 'Nea eres una chimba ',
-            text: 'Creaste un horno ome ome ome ',
-            icon: 'success',
-            confirmButtonText: 'Melo'
-          }
-        );
+        AlertHelper.alertaGuardar('Creaste un horno ome');
       }
     );
   }
@@ -56,28 +50,19 @@ export class HornoFormComponent implements OnInit {
     );
   }
 
-  alertaCheck(mensaje: string) {
-    Swal.fire({
-      title: 'Error en los campos del formulario',
-      text: mensaje,
-      icon: 'error',
-      confirmButtonText: 'Uy, zonas'
-    });
-  }
-
   check(another?:boolean):void{
     if(this.isCheckInputs()){
       this.create(another);
     }
   }
+
   isCheckInputs():boolean{
-    var alphaExp = /^[a-zA-Za\s]+$/
-    if(this.horno.marca==null || this.horno.vEstimadoActual==null){
-      this.alertaCheck('¿Se te olvidó diligenciar algún campo, mijo?');
+    if (ValidationHelper.empty(this.horno)) {
+      AlertHelper.alertaCheck('¿Se te olvidó diligenciar algún campo, mijo?');
       return false;
-    }else if(this.horno.marca.charAt(0).match(/[\s]/)
-    || this.horno.marca.charAt(this.horno.marca.length-1).match(/[\s]/)){
-      this.alertaCheck('¿Pusiste espacios antes de los valores, mijo?');
+    }
+    else if (ValidationHelper.spaces(this.horno.marca)){
+      AlertHelper.alertaCheck('¿Pusiste espacios antes o después de los valores, mijo?');
       return false;
     }
     return true;

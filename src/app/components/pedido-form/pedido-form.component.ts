@@ -13,6 +13,7 @@ import { Empresa } from 'src/app/models/empresa';
 import { EmpresaService } from 'src/app/services/empresa.service';
 import { PersonaExterna } from 'src/app/models/persona-externa';
 import { PersonaExternaService } from 'src/app/services/persona-externa.service';
+import { AlertHelper } from '../alert-helper';
 
 @Component({
   selector: 'app-pedido-form',
@@ -159,14 +160,7 @@ export class PedidoFormComponent implements OnInit {
         this.pedidoCreado = response;
         this.asignarPasteles();
         this.router.navigate(['/']);
-        Swal.fire(
-          {
-            title: 'Eres una chimba',
-            text: 'Creaste un orden ome',
-            icon: 'success',
-            confirmButtonText: 'Melo'
-          }
-        );
+        AlertHelper.alertaGuardar('Creaste un pedido ome')
       }
     );
   }

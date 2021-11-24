@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { Pastel } from 'src/app/models/pastel';
 import { PastelService } from 'src/app/services/pastel.service';
+import { AlertHelper } from '../alert-helper';
 
 @Component({
   selector: 'app-pastel-list',
@@ -26,29 +26,13 @@ export class PastelListComponent implements OnInit {
   }
 
   delete(pastel:Pastel):void{
-    Swal.fire(
-      {
-        title: 'Estás seguro, parce?',
-        text: 'Esto no tiene vuelta atrás',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'Uy zonas',
-        confirmButtonText: 'Sisas'
-      }
-    ).then(
+    AlertHelper.alertaBorrar().then(
       (result) => {
         if (result.isConfirmed) {
           this.pastelService.delete(pastel.id!).subscribe(
             response => {
               this.pasteles = this.pasteles.filter(emp => emp != pastel);
-              Swal.fire(
-                {
-                  title: 'Eres una chimba',
-                  text: 'Borraste un pastel ome',
-                  icon: 'success',
-                  confirmButtonText: 'Melo'
-                }
-              );
+              AlertHelper.alertaGuardar('Borraste un pastel ome');
             }
           );
         }

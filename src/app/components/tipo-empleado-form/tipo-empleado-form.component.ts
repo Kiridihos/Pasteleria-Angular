@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { TipoEmpleado } from 'src/app/models/tipo-empleado';
 import {TipoEmpleadoService } from 'src/app/services/tipo-empleado.service';
+import { AlertHelper } from '../alert-helper';
+import { ValidationHelper } from '../validation-helper';
 
 
 @Component({
@@ -30,38 +31,27 @@ export class TipoEmpleadoFormComponent implements OnInit {
         } else {
           this.router.navigate(['/']);
         }
-        Swal.fire(
-          {
-            title: 'Nea eres una chimba ',
-            text: 'Creaste un tipo de empleado ome',
-            icon: 'success',
-            confirmButtonText: 'Melo'
-          }
-        );
+        AlertHelper.alertaGuardar('Creaste un tipo de empleado ome');
       }
     );
   }
 
-  alertaCheck(mensaje: string) {
-    Swal.fire({
-      title: 'Error en los campos del formulario',
-      text: mensaje,
-      icon: 'error',
-      confirmButtonText: 'Uy, zonas'
-    });
-  }
   check(another?:boolean):void{
     if(this.isCheckInputs()){
       this.create(another);
     }
   }
   isCheckInputs():boolean{
-    var alphaExp = /^[a-zA-Za\s]+$/
-    if(this.tipoEmpleado.descripcion==null){
-      this.alertaCheck('¿Se te olvidó diligenciar algún campo, mijo?');
+    if (ValidationHelper.empty(this.tipoEmpleado)) {
+      AlertHelper.alertaCheck('¿Se te olvidó diligenciar algún campo, mijo?');
       return false;
-    }else if(this.tipoEmpleado.descripcion.charAt(0).match(/[\s]/) || this.tipoEmpleado.descripcion.charAt(this.tipoEmpleado.descripcion.length-1).match(/[\s]/)){
-      this.alertaCheck('¿Pusiste espacios antes de los valores, mijo?');
+    }
+    else if (ValidationHelper.spaces(this.tipoEmpleado)) {
+      AlertHelper.alertaCheck('¿Pusiste espacios antes o después de los valores, mijo?');
+      return false;
+    }
+    else if (ValidationHelper.numbers(this.tipoEmpleado.descripcion)) {
+      AlertHelper.alertaCheck('¿Pusiste un número en la descripción, mijo?');
       return false;
     }
     return true;

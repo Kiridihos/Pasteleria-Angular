@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TipoEmpleado } from 'src/app/models/tipo-empleado';
 import { TipoEmpleadoService } from 'src/app/services/tipo-empleado.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import Swal from 'sweetalert2';
+import { AlertHelper } from '../alert-helper';
 
 @Component({
   selector: 'app-tipo-empleado-list',
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class TipoEmpleadoListComponent implements OnInit {
 
   tipoEmpleados:TipoEmpleado[];
-  constructor(private tipoEmpleadoService:TipoEmpleadoService, private router:Router, private activate:ActivatedRoute) { 
+  constructor(private tipoEmpleadoService:TipoEmpleadoService, private router:Router, private activate:ActivatedRoute) {
     this.tipoEmpleados = [];
   }
 
@@ -25,29 +25,13 @@ export class TipoEmpleadoListComponent implements OnInit {
   }
 
   delete(tipoEmpleado:TipoEmpleado):void{
-    Swal.fire(
-      {
-        title: 'Estás seguro, parce?',
-        text: 'Esto no tiene vuelta atrás',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'Uy zonas',
-        confirmButtonText: 'Sisas'
-      }
-    ).then(
+    AlertHelper.alertaBorrar().then(
       (result) => {
         if (result.isConfirmed) {
           this.tipoEmpleadoService.delete(tipoEmpleado.id!).subscribe(
             response => {
               this.tipoEmpleados = this.tipoEmpleados.filter(t_emp => t_emp != tipoEmpleado);
-              Swal.fire(
-                {
-                  title: 'Eres una chimba',
-                  text: 'Borraste un tipo de empleado ome',
-                  icon: 'success',
-                  confirmButtonText: 'Melo'
-                }
-              );
+              AlertHelper.alertaGuardar('Borraste un tipo de empleado ome');
             }
           );
         }

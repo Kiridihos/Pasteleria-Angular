@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { Ingrediente } from 'src/app/models/ingrediente';
-import {IngredienteService } from 'src/app/services/ingrediente.service';
+import { IngredienteService } from 'src/app/services/ingrediente.service';
+import { AlertHelper } from '../alert-helper';
+import { ValidationHelper } from '../validation-helper';
 
 @Component({
   selector: 'app-ingrediente-form',
@@ -31,14 +32,7 @@ export class IngredienteFormComponent implements OnInit {
         else {
           this.router.navigate(['/']);
         }
-        Swal.fire(
-          {
-            title: 'Nea eres una chimba ',
-            text: 'Creaste un ingrediente de medallo ome',
-            icon: 'success',
-            confirmButtonText: 'Melo'
-          }
-        );
+        AlertHelper.alertaGuardar('Creaste un ingrediente ome');
       }
     );
   }
@@ -56,26 +50,18 @@ export class IngredienteFormComponent implements OnInit {
     );
   }
 
-  alertaCheck(mensaje: string) {
-    Swal.fire({
-      title: 'Error en los campos del formulario',
-      text: mensaje,
-      icon: 'error',
-      confirmButtonText: 'Uy, zonas'
-    });
-  }
   check(another?:boolean):void{
     if(this.isCheckInputs()){
       this.create(another);
     }
   }
   isCheckInputs():boolean{
-    var alphaExp = /^[a-zA-Za\s]+$/
-    if(this.ingrediente.nombre==null || this.ingrediente.uMed==null){
-      this.alertaCheck('¿Se te olvidó diligenciar algún campo, mijo?');
+    if (ValidationHelper.empty(this.ingrediente)) {
+      AlertHelper.alertaCheck('¿Se te olvidó diligenciar algún campo, mijo?');
       return false;
-    }else if(this.ingrediente.nombre.charAt(0).match(/[\s]/) || this.ingrediente.nombre.charAt( this.ingrediente.nombre.length-1).match(/[\s]/)){
-      this.alertaCheck('¿Se te olvidó diligenciar algún campo, mijo?');
+    }
+    else if (ValidationHelper.spaces(this.ingrediente.nombre)) {
+      AlertHelper.alertaCheck('¿Pusiste espacios antes o después de los valores, mijo?');
       return false;
     }
     return true;

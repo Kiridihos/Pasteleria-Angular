@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { TipoPastel } from 'src/app/models/tipo-pastel';
 import { TipoPastelService } from 'src/app/services/tipo-pastel.service';
+import { AlertHelper } from '../alert-helper';
+import { ValidationHelper } from '../validation-helper';
 
 @Component({
   selector: 'app-tipo-pastel-form',
@@ -31,14 +32,7 @@ export class TipoPastelFormComponent implements OnInit {
         else {
           this.router.navigate(['/']);
         }
-        Swal.fire(
-          {
-            title: 'Nea eres una chimba ',
-            text: 'Creaste un tipo de pastel ome ',
-            icon: 'success',
-            confirmButtonText: 'Melo'
-          }
-        );
+        AlertHelper.alertaGuardar('Creaste un tipo de pastel ome');
       }
     );
   }
@@ -56,8 +50,26 @@ export class TipoPastelFormComponent implements OnInit {
     );
   }
 
-  check(another?:boolean):void{
-   this.create(another);
+  check(another?: boolean): void{
+    if (this.valid()) {
+      this.create(another);
+    }
+  }
+
+  valid(): boolean{
+    if (ValidationHelper.empty(this.tipoPastel)) {
+      AlertHelper.alertaCheck('¿Se te olvidó diligenciar algún campo, mijo?');
+      return false;
+    }
+    else if (ValidationHelper.spaces(this.tipoPastel.descripcion)) {
+      AlertHelper.alertaCheck('¿Pusiste espacios antes o después de los valores, mijo?');
+      return false;
+    }
+    else if (ValidationHelper.numbers(this.tipoPastel.descripcion)) {
+      AlertHelper.alertaCheck('¿Pusiste un número en la descripción, mijo?');
+      return false;
+    }
+    return true;
   }
 
 }

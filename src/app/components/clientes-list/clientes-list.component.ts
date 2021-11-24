@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { Empleado } from 'src/app/models/empleado';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { PersonaExterna } from 'src/app/models/persona-externa';
 import { PersonaExternaService } from 'src/app/services/persona-externa.service';
 import { Empresa } from 'src/app/models/empresa';
 import { EmpresaService } from 'src/app/services/empresa.service';
+import { AlertHelper } from '../alert-helper';
 
 @Component({
   selector: 'app-clientes-list',
@@ -18,10 +18,10 @@ export class ClientesListComponent implements OnInit {
   personas:PersonaExterna[];
   empresas:Empresa[];
   title:string;
-  constructor(private empresaService:EmpresaService, 
-    private empleadoService:EmpleadoService, 
-    private personaExternaService:PersonaExternaService,  
-    private router:Router, private activate:ActivatedRoute) { 
+  constructor(private empresaService:EmpresaService,
+    private empleadoService:EmpleadoService,
+    private personaExternaService:PersonaExternaService,
+    private router:Router, private activate:ActivatedRoute) {
     this.empleados = [];
     this.personas = [];
     this.empresas = [];
@@ -67,30 +67,14 @@ export class ClientesListComponent implements OnInit {
     );
   }
 
-  deleteEmpleado(empleado:Empleado):void{
-    Swal.fire(
-      {
-        title: 'Estás seguro, parce?',
-        text: 'Esto no tiene vuelta atrás',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'Uy zonas',
-        confirmButtonText: 'Sisas'
-      }
-    ).then(
+  deleteEmpleado(empleado: Empleado): void{
+    AlertHelper.alertaBorrar().then(
       (result) => {
         if (result.isConfirmed) {
           this.empleadoService.delete(empleado.id!).subscribe(
             response => {
               this.empleados = this.empleados.filter(emp => emp != empleado);
-              Swal.fire(
-                {
-                  title: 'Eres una chimba',
-                  text: 'Borraste un empleado ome',
-                  icon: 'success',
-                  confirmButtonText: 'Melo'
-                }
-              );
+              AlertHelper.alertaGuardar('Borraste un empleado ome');
             }
           );
         }
@@ -99,29 +83,13 @@ export class ClientesListComponent implements OnInit {
   }
 
   deleteEmpresa(empresa:Empresa):void{
-    Swal.fire(
-      {
-        title: 'Estás seguro, parce?',
-        text: 'Esto no tiene vuelta atrás',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'Uy zonas',
-        confirmButtonText: 'Sisas'
-      }
-    ).then(
+    AlertHelper.alertaBorrar().then(
       (result) => {
         if (result.isConfirmed) {
           this.empresaService.delete(empresa.nit!).subscribe(
             response => {
               this.empresas = this.empresas.filter(empr => empr != empresa);
-              Swal.fire(
-                {
-                  title: 'Eres una chimba',
-                  text: 'Borraste un empleado ome',
-                  icon: 'success',
-                  confirmButtonText: 'Melo'
-                }
-              );
+              AlertHelper.alertaGuardar('Borraste una empresa ome');
             }
           );
         }
@@ -130,29 +98,13 @@ export class ClientesListComponent implements OnInit {
   }
 
   deletePersonaExterna(personaExterna:PersonaExterna):void{
-    Swal.fire(
-      {
-        title: 'Estás seguro, parce?',
-        text: 'Esto no tiene vuelta atrás',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'Uy zonas',
-        confirmButtonText: 'Sisas'
-      }
-    ).then(
+    AlertHelper.alertaBorrar().then(
       (result) => {
         if (result.isConfirmed) {
           this.personaExternaService.delete(personaExterna.id!).subscribe(
             response => {
               this.personas = this.personas.filter(per => per != personaExterna);
-              Swal.fire(
-                {
-                  title: 'Eres una chimba',
-                  text: 'Borraste un empleado ome',
-                  icon: 'success',
-                  confirmButtonText: 'Melo'
-                }
-              );
+              AlertHelper.alertaGuardar('Borraste una persona externa ome');
             }
           );
         }
@@ -160,5 +112,5 @@ export class ClientesListComponent implements OnInit {
     );
   }
 
-  
+
 }
