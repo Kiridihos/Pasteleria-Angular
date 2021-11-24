@@ -178,10 +178,10 @@ export class PedidoFormComponent implements OnInit {
           this.PedidoService.getPedido(id).subscribe(
             pedido => this.pedido = pedido
           );
-          this.title = 'Editar Orden';
+          this.title = 'Editar Pedido';
         }
         else {
-          this.title = 'Registrar Orden';
+          this.title = 'Registrar Pedido';
         }
       }
     );

@@ -25,7 +25,11 @@
           [(ngModel)]="horno.vEstimadoActual"
         />
       </div>
-      <button class="btn btn-primary" (click)="check()">Guardar</button>
+      <hr />
+      <button class="btn btn-primary me-2" (click)="check()">Guardar</button>
+      <button class="btn btn-secondary" (click)="check(true)">
+        Guardar y crear otro
+      </button>
     </form>
   </div>
 </div>

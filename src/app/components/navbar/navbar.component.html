@@ -50,13 +50,13 @@
               </li>
               <div class="dropdown-divider"></div>
               <li>
-                <a class="dropdown-item" [routerLink]="['/tipos_empleado/new']"
-                  >Registrar tipo de empleado</a
+                <a class="dropdown-item" [routerLink]="['/tipos_empleado']"
+                  >Ver todos los tipos de empleados</a
                 >
               </li>
               <li>
-                <a class="dropdown-item" [routerLink]="['/tipos_empleado']"
-                  >Ver todos los tipos de empleados</a
+                <a class="dropdown-item" [routerLink]="['/tipos_empleado/new']"
+                  >Registrar tipo de empleado</a
                 >
               </li>
             </ul>
@@ -71,13 +71,13 @@
             >
             <ul class="dropdown-menu">
               <li>
-                <a [routerLink]="['/clientes/new']" class="dropdown-item"
-                  >Registrar cliente</a
+                <a href="#" class="dropdown-item" [routerLink]="['/clientes']"
+                  >Ver todos los clientes</a
                 >
               </li>
               <li>
-                <a href="#" class="dropdown-item" [routerLink]="['/clientes']"
-                  >Ver todos los clientes</a
+                <a [routerLink]="['/clientes/new']" class="dropdown-item"
+                  >Registrar cliente</a
                 >
               </li>
             </ul>
@@ -112,20 +112,24 @@
               </li>
               <div class="dropdown-divider"></div>
               <li>
-                <a [routerLink]="['/hornos/new']" class="dropdown-item"
-                  >Registrar horno</a
-                >
                 <a [routerLink]="['/hornos']" class="dropdown-item"
                   >Ver todos los hornos</a
                 >
               </li>
+              <li>
+                <a [routerLink]="['/hornos/new']" class="dropdown-item"
+                  >Registrar horno</a
+                >
+              </li>
               <div class="dropdown-divider"></div>
+              <li>
+                <a [routerLink]="['/ingredientes']" class="dropdown-item"
+                  >Ver todos los ingredientes</a
+                >
+              </li>
               <li>
                 <a [routerLink]="['/ingredientes/new']" class="dropdown-item"
                   >Registrar ingrediente</a
-                >
-                <a [routerLink]="['/ingredientes']" class="dropdown-item"
-                  >Ver todos los ingredientes</a
                 >
               </li>
             </ul>
@@ -143,13 +147,13 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li>
-                <a class="dropdown-item" [routerLink]="['/pedidos/new']"
-                  >Nueva orden</a
+                <a class="dropdown-item" [routerLink]="['/pedidos']"
+                  >Ver órdenes</a
                 >
               </li>
               <li>
-                <a class="dropdown-item" [routerLink]="['/pedidos']"
-                  >Ver órdenes</a
+                <a class="dropdown-item" [routerLink]="['/pedidos/new']"
+                  >Nueva orden</a
                 >
               </li>
             </ul>

@@ -21,10 +21,16 @@ export class HornoFormComponent implements OnInit {
     this.cargarHorno();
   }
 
-  create():void{
+  create(another?:boolean):void{
     this.hornoService.create(this.horno).subscribe(
       response => {
-        this.router.navigate(['/']);
+        if (another) {
+          this.router.navigate(['/hornos/new']);
+          this.horno = new Horno();
+        }
+        else {
+          this.router.navigate(['/']);
+        }
         Swal.fire(
           {
             title: 'Nea eres una chimba ',
@@ -50,9 +56,9 @@ export class HornoFormComponent implements OnInit {
     );
   }
 
-  check():void{
+  check(another?:boolean):void{
     if(this.isCheckInputs()){
-      this.create();
+      this.create(another);
     }
   }
   isCheckInputs():boolean{

@@ -1,30 +1,48 @@
 <div class="my-4">
+  <div class="col-lg-10 offset-lg-1">
     <h1 class="display-4">Lista de ingredientes</h1>
-    <hr>
+    <hr />
     <div class="table-responsive mt-4">
-        <table class="table table-sm table-striped">
-            <thead>
-                <tr>
-                    <th>ID de Ingrediente</th>
-                    <th>Nombre</th>
-                    <th>Unidades</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let ingrediente of ingredientes">
-                    <td>{{ ingrediente.id }}</td>
-                    <td>{{ ingrediente.nombre}}</td>
-                    <td>{{ ingrediente.uMed}}</td>
-                    
-                    <td>
-                        <button class="btn btn-sm btn-danger me-2" (click)="delete(ingrediente)">Eliminar</button>
-                        <button class="btn btn-sm btn-warning" [routerLink]="['/ingredientes/update', ingrediente.id]">Editar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>ID de Ingrediente</th>
+            <th>Nombre</th>
+            <th>Unidades</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="ingredientes.length === 0">
+            <td colspan="4" class="text-center">
+              <h6 class="text-info">
+                No has registrado ningún ingrediente. Puedes registrar uno
+                <a [routerLink]="['/ingredientes/new']">aquí.</a>
+              </h6>
+            </td>
+          </tr>
+          <tr *ngFor="let ingrediente of ingredientes">
+            <td>{{ ingrediente.id }}</td>
+            <td>{{ ingrediente.nombre }}</td>
+            <td>{{ ingrediente.uMed }}</td>
+
+            <td>
+              <button
+                class="btn btn-sm btn-danger me-2"
+                (click)="delete(ingrediente)"
+              >
+                Eliminar
+              </button>
+              <button
+                class="btn btn-sm btn-warning"
+                [routerLink]="['/ingredientes/update', ingrediente.id]"
+              >
+                Editar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
-
-

@@ -21,10 +21,16 @@ export class IngredienteFormComponent implements OnInit {
     this.cargarIngrediente();
   }
 
-  create():void{
+  create(another?:boolean):void{
     this.ingredienteService.create(this.ingrediente).subscribe(
       response => {
-        this.router.navigate(['/']);
+        if (another) {
+          this.router.navigate(['/ingredientes/new']);
+          this.ingrediente = new Ingrediente();
+        }
+        else {
+          this.router.navigate(['/']);
+        }
         Swal.fire(
           {
             title: 'Nea eres una chimba ',
@@ -49,9 +55,9 @@ export class IngredienteFormComponent implements OnInit {
       }
     );
   }
-  check():void{
+  check(another?:boolean):void{
     if(this.isCheckInputs()){
-      this.create();
+      this.create(another);
     }
   }
   isCheckInputs():boolean{

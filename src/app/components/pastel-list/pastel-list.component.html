@@ -1,8 +1,9 @@
 <div class="my-4">
+  <div class="col-lg-10 offset-lg-1">
     <h1 class="display-4">{{ title }}</h1>
     <hr />
     <div class="table-responsive mt-4">
-      <table class="table table-sm table-striped">
+      <table class="table table-hover table-striped">
         <thead>
           <tr>
             <th>ID de Empleado</th>
@@ -15,11 +16,20 @@
           </tr>
         </thead>
         <tbody>
+          <tr *ngIf="pasteles.length === 0">
+            <td colspan="7" class="text-center">
+              <h6 class="text-info">
+                No has registrado ningún pastel. Puedes registrar uno cuando
+                crees una orden
+                <a [routerLink]="['/pedidos/new']">aquí.</a>
+              </h6>
+            </td>
+          </tr>
           <tr *ngFor="let pastel of pasteles">
             <td>{{ pastel.id }}</td>
             <td>{{ pastel.nombre }}</td>
             <td>{{ pastel.pesoMin }}</td>
-            <td>{{ pastel.adicional}}</td>
+            <td>{{ pastel.adicional }}</td>
             <td>{{ pastel.tipo?.descripcion }}</td>
             <td>{{ pastel.pedido }}</td>
             <td>
@@ -41,4 +51,4 @@
       </table>
     </div>
   </div>
-  
+</div>

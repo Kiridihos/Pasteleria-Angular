@@ -2,6 +2,8 @@
   <h1 class="display-4 text-lg-center">{{ title }}</h1>
   <hr />
   <div class="col-sm-12 col-lg-4 offset-lg-1">
+    <h4 class="text-secondary">Detalles del pedido</h4>
+    <hr />
     <form>
       <div class="form-group my-3">
         <label for="salario actual">Fecha de la entrega</label>
@@ -58,6 +60,7 @@
           <a [routerLink]="['/clientes/new']">aquí.</a>
         </small>
       </div>
+      <hr />
       <button class="btn btn-primary" (click)="create()">Guardar</button>
     </form>
   </div>

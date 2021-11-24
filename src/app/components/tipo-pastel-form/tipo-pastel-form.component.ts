@@ -21,10 +21,16 @@ export class TipoPastelFormComponent implements OnInit {
     this.cargarTipoPastel();
   }
 
-  create():void{
+  create(another?:boolean):void{
     this.tipoPastelService.create(this.tipoPastel).subscribe(
       response => {
-        this.router.navigate(['/']);
+        if (another) {
+          this.router.navigate(['/tipos_pastel/new']);
+          this.tipoPastel = new TipoPastel();
+        }
+        else {
+          this.router.navigate(['/']);
+        }
         Swal.fire(
           {
             title: 'Nea eres una chimba ',
@@ -50,8 +56,8 @@ export class TipoPastelFormComponent implements OnInit {
     );
   }
 
-  check():void{
-   this.create();
+  check(another?:boolean):void{
+   this.create(another);
   }
 
 }
