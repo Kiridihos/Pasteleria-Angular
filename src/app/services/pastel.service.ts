@@ -46,9 +46,9 @@ export class PastelService {
     );
   }
 
-  delete(id:string): Observable<Pastel>{
+  delete(id:number): Observable<Pastel>{
     return this.http.delete<Pastel>(
-      this.urlEndPoint + id,
+      this.urlEndPoint + id.toString(),
       {
         headers: this.header
       }

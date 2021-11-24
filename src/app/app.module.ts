@@ -52,6 +52,7 @@ const router:Routes = [
   {path: 'tipos_pastel', component: TipoPastelListComponent},
   {path: 'tipos_pastel/new', component: TipoPastelFormComponent},
   {path: 'tipos_pastel/update/:id', component: TipoPastelFormComponent},
+  {path: 'pasteles', component: PastelListComponent}
 ];
 
 @NgModule({

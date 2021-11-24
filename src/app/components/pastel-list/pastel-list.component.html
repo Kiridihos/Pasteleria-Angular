@@ -1,1 +1,44 @@
-<p>pastel-list works!</p>
+<div class="my-4">
+    <h1 class="display-4">{{ title }}</h1>
+    <hr />
+    <div class="table-responsive mt-4">
+      <table class="table table-sm table-striped">
+        <thead>
+          <tr>
+            <th>ID de Empleado</th>
+            <th>Nombre</th>
+            <th>Peso Minimo</th>
+            <th>Adicionales</th>
+            <th>Tipo de pastel</th>
+            <th>Adicionales</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pastel of pasteles">
+            <td>{{ pastel.id }}</td>
+            <td>{{ pastel.nombre }}</td>
+            <td>{{ pastel.pesoMin }}</td>
+            <td>{{ pastel.adicional}}</td>
+            <td>{{ pastel.tipo?.descripcion }}</td>
+            <td>{{ pastel.pedido }}</td>
+            <td>
+              <button
+                class="btn btn-sm btn-danger me-2"
+                (click)="delete(pastel)"
+              >
+                Eliminar
+              </button>
+              <button
+                class="btn btn-sm btn-warning"
+                [routerLink]="['/pasteles', pastel.id]"
+              >
+                Editar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
