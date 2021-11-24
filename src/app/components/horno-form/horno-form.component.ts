@@ -56,6 +56,15 @@ export class HornoFormComponent implements OnInit {
     );
   }
 
+  alertaCheck(mensaje: string) {
+    Swal.fire({
+      title: 'Error en los campos del formulario',
+      text: mensaje,
+      icon: 'error',
+      confirmButtonText: 'Uy, zonas'
+    });
+  }
+
   check(another?:boolean):void{
     if(this.isCheckInputs()){
       this.create(another);
@@ -64,35 +73,11 @@ export class HornoFormComponent implements OnInit {
   isCheckInputs():boolean{
     var alphaExp = /^[a-zA-Za\s]+$/
     if(this.horno.marca==null || this.horno.vEstimadoActual==null){
-      Swal.fire(
-        {
-          title: 'CAMPOS VACIOS',
-          text: 'no pueden haber campos vacios',
-          icon: 'error',
-          confirmButtonText: 'Volver'
-        }
-      );
+      this.alertaCheck('¿Se te olvidó diligenciar algún campo, mijo?');
       return false;
     }else if(this.horno.marca.charAt(0).match(/[\s]/)
     || this.horno.marca.charAt(this.horno.marca.length-1).match(/[\s]/)){
-      Swal.fire(
-        {
-          title: 'CAMPOS CON ESPACIOS',
-          text: 'los campos no pueden empezar/terminar con espacios',
-          icon: 'error',
-          confirmButtonText: 'Volver'
-        }
-      );
-      return false;
-    }else if(! this.horno.marca.match(alphaExp)){
-      Swal.fire(
-        {
-          title: 'VALORES INVALIDOS',
-          text: 'las marcas solo pueden tener letras',
-          icon: 'error',
-          confirmButtonText: 'Volver'
-        }
-      );
+      this.alertaCheck('¿Pusiste espacios antes de los valores, mijo?');
       return false;
     }
     return true;
