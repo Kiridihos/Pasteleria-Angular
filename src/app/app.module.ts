@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import {CalendarModule} from 'primeng/calendar';
+import { DialogModule } from 'primeng/dialog';
 // Otros
 // Locales
 import { AppRoutingModule } from './app-routing.module';
@@ -73,7 +73,7 @@ const router:Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(router),
-    CalendarModule
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

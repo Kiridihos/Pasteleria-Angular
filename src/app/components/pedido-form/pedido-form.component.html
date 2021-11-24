@@ -1,17 +1,124 @@
-<div class="row my-4">
-    <h1 class="display-4">{{title}}</h1>
-    <hr>
-    <div class="col-12">
-        <form >
-            <div class="form-group my-3 ">
-                <label for="apellidos">Fecha de la solicitud</label>
-                <input type="text" name="apellidos" id="apellidos" class="form-control" placeholder="fecha" [(ngModel)]="pedido.fechaSolicitud">
-            </div>
-            <div class="form-group my-3 ">
-                <label for="salario actual">Fecha de la entrega</label>
-                <input type="text" name="salarioActual" id="salarioActual" class="form-control" placeholder="fecha" [(ngModel)]="pedido.fechaEntrega">
-            </div>
-           <button class="btn btn-primary" (click)="create()">Guardar</button>
-        </form>
-    </div>
+<div class="row my-4 text-lg-center">
+  <h1 class="display-4">{{ title }}</h1>
+  <hr />
+  <div class="col-sm-12 col-lg-6">
+    <form>
+      <div class="form-group my-3">
+        <label for="salario actual">Fecha de la entrega</label>
+        <input
+          type="date"
+          name="salarioActual"
+          id="salarioActual"
+          class="form-control"
+          [(ngModel)]="pedido.fechaEntrega"
+        />
+      </div>
+      <div class="form-group my-3">
+        <label for="empleado">Empleado encargado</label>
+        <select name="empleado" id="empleado" class="form-control">
+          <option selected>Selecciona un empleado...</option>
+          <option [ngValue]="empleado" *ngFor="let empleado of empleados">
+            {{ empleado.nombres }} {{ empleado.apellidos }}
+          </option>
+        </select>
+      </div>
+      <button class="btn btn-primary" (click)="create()">Guardar</button>
+    </form>
+  </div>
+  <div class="col-sm-12 col-lg-6">
+    <h4 class="text-secondary">Pasteles del pedido</h4>
+    <table class="table table-light table-hover">
+      <tbody>
+        <tr *ngFor="let pastel of pasteles">
+          <td>
+            {{ pastel.id }}<br /><span class="text-strong">ID del pastel</span>
+          </td>
+          <td>
+            {{ pastel.nombre }}<br /><span class="text-strong"
+              >Nombre del pastel</span
+            >
+          </td>
+          <td>
+            {{ pastel.tipo }}<br /><span class="text-strong"
+              >Tipo del pastel</span
+            >
+          </td>
+        </tr>
+        <tr>
+          <td (click)="showPastelDialog()">
+            <span
+              class="text-warning"
+              *ngIf="pasteles.length === 0; else elsePasteles"
+            >
+              Este pedido no tiene pasteles. Agrega uno aquí.
+            </span>
+            <ng-template #elsePasteles>
+              <a (click)="showPastelDialog()">Agregar otro pastel.</a>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+<p-dialog
+  [(visible)]="pastelDialog"
+  header="Crear pastel"
+  [style]="{ width: '800px' }"
+  styleClass="p-fluid"
+  [modal]="true"
+>
+  <ng-template pTemplate="content">
+    <form>
+      <div class="row">
+        <div class="form-group my-3">
+          <label for="nombre">Nombre del pastel</label>
+          <input
+            type="text"
+            name="nombre"
+            id="nombre"
+            [(ngModel)]="pastel.nombre"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group my-3">
+          <label for="tipo">Tipo de pastel</label>
+          <input
+            type="text"
+            name="tipo"
+            id="tipo"
+            [(ngModel)]="pastel.tipo"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group my-3">
+          <label for="pesoMin">Peso mínimo</label>
+          <input
+            type="number"
+            name="pesoMin"
+            id="pesoMin"
+            [(ngModel)]="pastel.pesoMin"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group my-3">
+          <label for="adicional">Adicional</label>
+          <input
+            type="text"
+            name="adicional"
+            id="adicional"
+            [(ngModel)]="pastel.adicional"
+            class="form-control"
+          />
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="row">
+      <div class="col-12">
+        <button class="btn btn-primary">Guardar pastel</button>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>

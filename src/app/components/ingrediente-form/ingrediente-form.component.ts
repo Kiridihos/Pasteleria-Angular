@@ -10,11 +10,13 @@ import {IngredienteService } from 'src/app/services/ingrediente.service';
   styleUrls: ['./ingrediente-form.component.css']
 })
 export class IngredienteFormComponent implements OnInit {
-  ingrediente:Ingrediente;
-  constructor(private ingredienteService:IngredienteService, private router:Router, private activate:ActivatedRoute) { 
+  ingrediente: Ingrediente;
+  title: string;
+  constructor(private ingredienteService:IngredienteService, private router:Router, private activate:ActivatedRoute) {
     this.ingrediente = new Ingrediente();
+    this.title = 'Registrar ingrediente';
   }
-  
+
   ngOnInit(): void {
     this.cargarIngrediente();
   }

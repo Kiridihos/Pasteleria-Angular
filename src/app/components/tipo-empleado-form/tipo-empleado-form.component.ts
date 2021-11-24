@@ -11,9 +11,11 @@ import {TipoEmpleadoService } from 'src/app/services/tipo-empleado.service';
   styleUrls: ['./tipo-empleado-form.component.css']
 })
 export class TipoEmpleadoFormComponent implements OnInit {
-  tipoEmpleado:TipoEmpleado;
-  constructor(private tipoEmpleadoService:TipoEmpleadoService, private router:Router, private activate:ActivatedRoute) { 
+  tipoEmpleado: TipoEmpleado;
+  title: string;
+  constructor(private tipoEmpleadoService:TipoEmpleadoService, private router:Router, private activate:ActivatedRoute) {
     this.tipoEmpleado = new TipoEmpleado();
+    this.title = 'Registrar tipo de empleado'
   }
 
   ngOnInit(): void {

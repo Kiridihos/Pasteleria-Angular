@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Empleado } from 'src/app/models/empleado';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { Pedido } from 'src/app/models/pedido';
+import { Pastel } from 'src/app/models/pastel';
 
 @Component({
   selector: 'app-pedido-form',
@@ -12,13 +13,19 @@ import { Pedido } from 'src/app/models/pedido';
   styleUrls: ['./pedido-form.component.css']
 })
 export class PedidoFormComponent implements OnInit {
+  pastelDialog: boolean;
   pedido:Pedido;
-  title:string;
-  empleado:Empleado[];
-  constructor(private PedidoService:PedidoService, private empleadoService:EmpleadoService, private router:Router, private activate:ActivatedRoute) { 
+  title: string;
+  pastel: Pastel;
+  empleados: Empleado[];
+  pasteles: Pastel[];
+  constructor(private PedidoService:PedidoService, private empleadoService:EmpleadoService, private router:Router, private activate:ActivatedRoute) {
     this.pedido = new Pedido();
-    this.empleado = [];
+    this.pastel = new Pastel();
+    this.empleados = [];
+    this.pasteles = [];
     this.title = '';
+    this.pastelDialog = false;
   }
 
   ngOnInit(): void {
@@ -28,8 +35,13 @@ export class PedidoFormComponent implements OnInit {
 
   getEmpleado():void{
     this.empleadoService.getEmpleados().subscribe(
-      empleado => this.empleado = empleado
+      empleados => this.empleados = empleados
     );
+  }
+
+  showPastelDialog(): void {
+    console.log('Click');
+    this.pastelDialog = true;
   }
 
   create():void{
@@ -46,7 +58,7 @@ export class PedidoFormComponent implements OnInit {
         );
       }
     );
-  }  
+  }
   cargarPedido():void{
     this.activate.params.subscribe(
       params => {

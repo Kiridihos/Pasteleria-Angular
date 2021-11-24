@@ -1,34 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 /*Atributos unicos*/
-@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
 body {
-	background-color: #C3CEE6;
+  background-color: #c3cee6;
 }
-.bg-teal{
-	background-color: #E3F2FD!important;
+.bg-teal {
+  background-color: #e3f2fd !important;
 }
-.bg-lilac{
-	background-color: #C3CEE6!important;
+.bg-lilac {
+  background-color: #c3cee6 !important;
 }
 .navbar-brand {
-	font-family: 'Cookie', cursive;
-	font-size: 2em;
+  font-family: "Cookie", cursive;
+  font-size: 2em;
 }
-.carousel-item {	
-	object-fit: cover;
+.carousel-item {
+  object-fit: cover;
 }
 
 #carouselModels.carousel-item img {
-	height: 600px;
+  height: 600px;
 }
 
 .carousel-inner img {
-    width: 100%;
-    max-height: 650px;
-}
-
-.form-group { 
-	height: 100px; 
-	width: 400px; 
-	text-align: center;
+  width: 100%;
+  max-height: 650px;
 }

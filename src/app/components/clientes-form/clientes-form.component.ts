@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./clientes-form.component.css']
 })
 export class ClientesFormComponent implements OnInit {
+  title: string;
   fechaNac:Date;
   empresa: Empresa;
   persona: PersonaExterna;
@@ -21,14 +22,15 @@ export class ClientesFormComponent implements OnInit {
   opcion:string;
   constructor(private empresaService:EmpresaService,
     private personaService:PersonaExternaService,
-    private router:Router, private activate: ActivatedRoute) 
-    { 
+    private router:Router, private activate: ActivatedRoute)
+    {
       this.fechaNac = new Date();
       this.empresa = new Empresa();
       this.persona = new PersonaExterna();
       this.tiposCliente = ['Empresa', 'Persona externa']
       this.selected = '';
-      this.opcion = '';
+    this.opcion = '';
+    this.title = 'Registrar cliente';
     }
 
   ngOnInit(): void {
@@ -146,9 +148,9 @@ export class ClientesFormComponent implements OnInit {
         }
       );
       return false;
-    }else if(this.empresa.nombre?.charAt(0).match(/[\s]/) 
+    }else if(this.empresa.nombre?.charAt(0).match(/[\s]/)
     || this.empresa.nombre?.charAt( this.empresa.nombre.length-1).match(/[\s]/)
-    || this.empresa.direccion?.charAt(0).match(/[\s]/) 
+    || this.empresa.direccion?.charAt(0).match(/[\s]/)
     || this.empresa.direccion?.charAt( this.empresa.direccion.length-1).match(/[\s]/)){
       Swal.fire(
         {
@@ -177,7 +179,7 @@ export class ClientesFormComponent implements OnInit {
         this.crearPersona();
       }
     }
-  
+
   isCheckPersonaInputs():boolean{
     this.persona.fechaNac = this.processDate();
     var alphaExp = /^[a-zA-Za\s]+$/;
@@ -192,11 +194,11 @@ export class ClientesFormComponent implements OnInit {
         }
       );
       return false;
-    }else if(this.persona.nombres?.charAt(0).match(/[\s]/) 
+    }else if(this.persona.nombres?.charAt(0).match(/[\s]/)
     ||this.persona.nombres?.charAt( this.persona.nombres.length-1).match(/[\s]/)
-    ||this.persona.apellidos?.charAt(0).match(/[\s]/) 
+    ||this.persona.apellidos?.charAt(0).match(/[\s]/)
     ||this.persona.apellidos?.charAt( this.persona.apellidos.length-1).match(/[\s]/)
-    ||this.persona.dir?.charAt(0).match(/[\s]/) 
+    ||this.persona.dir?.charAt(0).match(/[\s]/)
     ||this.persona.dir?.charAt( this.persona.dir.length-1).match(/[\s]/)
       ){Swal.fire(
         {
@@ -218,7 +220,7 @@ export class ClientesFormComponent implements OnInit {
       );
       return false;
     }else{
-      return true;     
+      return true;
     }
   }
 }

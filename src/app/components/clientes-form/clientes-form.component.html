@@ -1,57 +1,136 @@
-<div class="row pt-5">
-    <div class="col-12">
-        <label for="tipoCliente">Selecciona el tipo de cliente que quieres registrar</label>
-        <select name="tipoCliente" id="tipoCliente" class="form-control" [(ngModel)]="opcion" (change)="selectedType()">
-            <option value="" selected>Selecciona un tipo de cliente</option>
-            <option *ngFor="let tipoCliente of tiposCliente" value="{{tipoCliente}}">{{ tipoCliente }}</option>
-        </select>
-        <div [ngSwitch]="selected">
-            <div *ngSwitchCase="'Empresa'">
-                <form>
-                    <div class="form-group my-3">
-                        <label for="nit">NIT de la empresa</label>
-                        <input type="number" [(ngModel)]="empresa.nit" name="nit" id="nit" class="form-control" placeholder="NIT de la empresa">
-                    </div>
-                    <div class="form-group my-3">
-                        <label for="nombre">Nombre de la empresa</label>
-                        <input type="text" [(ngModel)]="empresa.nombre" name="nombre" id="nombre" class="form-control" placeholder="Nombre de la empresa">
-                    </div>
-                    <div class="form-group my-3">
-                        <label for="direccion">Dirección de la empresa</label>
-                        <input type="text" [(ngModel)]="empresa.direccion" name="direccion" id="direccion" class="form-control" placeholder="Dirección de la empresa">
-                    </div>
-                   <button class="btn btn-primary" (click)="checkEmpresa()">Guardar</button>
-                </form>
-            </div>
-            <div *ngSwitchCase="'Persona externa'">
-                <form>
-                    <div class="form-group my-3 ">
-                        <label for="cedula">Cedula de la persona</label>
-                        <input type="number" [(ngModel)]="persona.cedula" name="cedula" id="cedula" class="form-control" placeholder="Cedula">
-                    </div>
-                    <div class="form-group my-3 ">
-                        <label for="nombres">Nombres de la persona externa</label>
-                        <input type="text" [(ngModel)]="persona.nombres" name="nombres" id="nombres" class="form-control" placeholder="Nombres">
-                    </div>
-                    <div class="form-group my-3 ">
-                        <label for="apellidos">Apellidos del empleado</label>
-                        <input type="text" [(ngModel)]="persona.apellidos" name="apellidos" id="apellidos" class="form-control" placeholder="Apellidos">
-                    </div>
-                    <div class="form-group my-3 ">
-                        <label for="dir">Direccion</label>
-                        <input type="text" [(ngModel)]="persona.dir" name="dir" id="dir" class="form-control" placeholder="Direccion">
-                    </div>
-                    <div class="form-group my-3 ">
-                        <label for="fechaNac">Fecha de nacimiento</label>
-                        <input type="date" [(ngModel)]="fechaNac" name="fechaNac" id="fechaNac" class="form-control" placeholder="Fecha de nacimiento">
-                        <small class="text-danger">Por favor ingresa la fecha en formato yyyy-MM-dd</small>
-                    </div>
-                   <button class="btn btn-primary" (click)="checkPersona()">Guardar</button>
-                </form>
-            </div>
-            <div *ngSwitchDefault>
-                <div class="alert alert-info mt-3">No has seleccionado un tipo de cliente.</div>
-            </div>
+<div class="row my-4">
+  <h1 class="display-4 text-lg-center">{{ title }}</h1>
+  <hr />
+  <div class="col-sm-12 col-lg-8 offset-lg-2">
+    <label for="tipoCliente"
+      >Selecciona el tipo de cliente que quieres registrar</label
+    >
+    <select
+      name="tipoCliente"
+      id="tipoCliente"
+      class="form-control"
+      [(ngModel)]="opcion"
+      (change)="selectedType()"
+    >
+      <option value="" selected>Selecciona un tipo de cliente</option>
+      <option
+        *ngFor="let tipoCliente of tiposCliente"
+        value="{{ tipoCliente }}"
+      >
+        {{ tipoCliente }}
+      </option>
+    </select>
+    <div [ngSwitch]="selected">
+      <div *ngSwitchCase="'Empresa'">
+        <form>
+          <div class="form-group my-3">
+            <label for="nit">NIT de la empresa</label>
+            <input
+              type="number"
+              [(ngModel)]="empresa.nit"
+              name="nit"
+              id="nit"
+              class="form-control"
+              placeholder="NIT de la empresa"
+            />
+          </div>
+          <div class="form-group my-3">
+            <label for="nombre">Nombre de la empresa</label>
+            <input
+              type="text"
+              [(ngModel)]="empresa.nombre"
+              name="nombre"
+              id="nombre"
+              class="form-control"
+              placeholder="Nombre de la empresa"
+            />
+          </div>
+          <div class="form-group my-3">
+            <label for="direccion">Dirección de la empresa</label>
+            <input
+              type="text"
+              [(ngModel)]="empresa.direccion"
+              name="direccion"
+              id="direccion"
+              class="form-control"
+              placeholder="Dirección de la empresa"
+            />
+          </div>
+          <button class="btn btn-primary" (click)="checkEmpresa()">
+            Guardar
+          </button>
+        </form>
+      </div>
+      <div *ngSwitchCase="'Persona externa'">
+        <form>
+          <div class="form-group my-3">
+            <label for="cedula">Cedula de la persona</label>
+            <input
+              type="number"
+              [(ngModel)]="persona.cedula"
+              name="cedula"
+              id="cedula"
+              class="form-control"
+              placeholder="Cedula"
+            />
+          </div>
+          <div class="form-group my-3">
+            <label for="nombres">Nombres de la persona externa</label>
+            <input
+              type="text"
+              [(ngModel)]="persona.nombres"
+              name="nombres"
+              id="nombres"
+              class="form-control"
+              placeholder="Nombres"
+            />
+          </div>
+          <div class="form-group my-3">
+            <label for="apellidos">Apellidos del empleado</label>
+            <input
+              type="text"
+              [(ngModel)]="persona.apellidos"
+              name="apellidos"
+              id="apellidos"
+              class="form-control"
+              placeholder="Apellidos"
+            />
+          </div>
+          <div class="form-group my-3">
+            <label for="dir">Direccion</label>
+            <input
+              type="text"
+              [(ngModel)]="persona.dir"
+              name="dir"
+              id="dir"
+              class="form-control"
+              placeholder="Direccion"
+            />
+          </div>
+          <div class="form-group my-3">
+            <label for="fechaNac">Fecha de nacimiento</label>
+            <input
+              type="date"
+              [(ngModel)]="fechaNac"
+              name="fechaNac"
+              id="fechaNac"
+              class="form-control"
+              placeholder="Fecha de nacimiento"
+            />
+            <small class="text-danger"
+              >Por favor ingresa la fecha en formato yyyy-MM-dd</small
+            >
+          </div>
+          <button class="btn btn-primary" (click)="checkPersona()">
+            Guardar
+          </button>
+        </form>
+      </div>
+      <div *ngSwitchDefault>
+        <div class="alert alert-info mt-3">
+          No has seleccionado un tipo de cliente.
         </div>
+      </div>
     </div>
+  </div>
 </div>

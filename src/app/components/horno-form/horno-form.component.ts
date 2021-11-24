@@ -10,11 +10,13 @@ import {HornoService } from 'src/app/services/horno.service';
   styleUrls: ['./horno-form.component.css']
 })
 export class HornoFormComponent implements OnInit {
-  horno:Horno;
-  constructor(private hornoService:HornoService, private router:Router, private activate:ActivatedRoute) { 
+  horno: Horno;
+  title: string;
+  constructor(private hornoService:HornoService, private router:Router, private activate:ActivatedRoute) {
     this.horno = new Horno();
+    this.title = 'Registrar horno';
   }
-  
+
   ngOnInit(): void {
     this.cargarHorno();
   }
@@ -52,7 +54,7 @@ export class HornoFormComponent implements OnInit {
     if(this.isCheckInputs()){
       this.create();
     }
-  }  
+  }
   isCheckInputs():boolean{
     var alphaExp = /^[a-zA-Za\s]+$/
     if(this.horno.marca==null || this.horno.vEstimadoActual==null){
@@ -65,7 +67,7 @@ export class HornoFormComponent implements OnInit {
         }
       );
       return false;
-    }else if(this.horno.marca.charAt(0).match(/[\s]/) 
+    }else if(this.horno.marca.charAt(0).match(/[\s]/)
     || this.horno.marca.charAt(this.horno.marca.length-1).match(/[\s]/)){
       Swal.fire(
         {

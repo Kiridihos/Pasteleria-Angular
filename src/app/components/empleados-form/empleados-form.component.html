@@ -1,31 +1,56 @@
 <div class="row my-4">
-    <h1 class="display-4">{{title}}</h1>
-    <hr>
-    <div class="col-12">
-        <form>
-            <div class="form-group my-3 ">
-                <label for="nombres">Nombres del empleado</label>
-                <input type="text" name="nombres" id="nombres" class="form-control" placeholder="Nombres..." [(ngModel)]="empleado.nombres">
-            </div>
-            <div class="form-group my-3 ">
-                <label for="apellidos">Apellidos del empleado</label>
-                <input type="text" name="apellidos" id="apellidos" class="form-control" placeholder="Apellidos..." [(ngModel)]="empleado.apellidos">
-            </div>
-            <div class="form-group my-3 ">
-                <label for="salario actual">Salario Actual</label>
-                <input type="number" name="salarioActual" id="salarioActual" class="form-control" placeholder="Salario actual..." [(ngModel)]="empleado.salarioActual">
-            </div>
-
-            <div class="form-group my-3">
-                <label for="tipoEmpleado">Tipo de empleado</label>
-                <select name="tipoEmpleado" id="tipoEmpleado" class="form-control" [(ngModel)]="empleado.tipoEmpleado">
-                    <option selected>Selecciona un tipo de empleado</option>
-                    <option *ngFor="let tipo of tipos" [ngValue]="tipo">
-                        {{tipo.descripcion}}
-                    </option>
-                </select>
-            </div>
-           <button class="btn btn-primary" (click)="check()">Guardar</button>
-        </form>
-    </div>
+  <h1 class="display-4 text-lg-center">{{ title }}</h1>
+  <hr />
+  <div class="col-sm-12 col-lg-8 offset-lg-2">
+    <form>
+      <div class="form-group my-3">
+        <label for="nombres">Nombres del empleado</label>
+        <input
+          type="text"
+          name="nombres"
+          id="nombres"
+          class="form-control"
+          placeholder="Nombres..."
+          [(ngModel)]="empleado.nombres"
+        />
+      </div>
+      <div class="form-group my-3">
+        <label for="apellidos">Apellidos del empleado</label>
+        <input
+          type="text"
+          name="apellidos"
+          id="apellidos"
+          class="form-control"
+          placeholder="Apellidos..."
+          [(ngModel)]="empleado.apellidos"
+        />
+      </div>
+      <div class="form-group my-3">
+        <label for="salario actual">Salario Actual</label>
+        <input
+          type="number"
+          name="salarioActual"
+          id="salarioActual"
+          class="form-control"
+          placeholder="Salario actual..."
+          [(ngModel)]="empleado.salarioActual"
+        />
+      </div>
+      <div class="form-group my-3">
+        <label for="tipoEmpleado">Tipo de empleado</label>
+        <select
+          name="tipoEmpleado"
+          id="tipoEmpleado"
+          class="form-control"
+          [(ngModel)]="empleado.tipoEmpleado"
+        >
+          <option selected>Selecciona un tipo de empleado</option>
+          <option *ngFor="let tipo of tipos" [ngValue]="tipo">
+            {{ tipo.descripcion }}
+          </option>
+        </select>
+      </div>
+      <button class="btn btn-primary" (click)="check()">Guardar</button>
+    </form>
+  </div>
 </div>
