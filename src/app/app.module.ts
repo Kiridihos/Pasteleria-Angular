@@ -27,6 +27,7 @@ import { PedidoListComponent } from './components/pedido-list/pedido-list.compon
 import { PedidoFormComponent } from './components/pedido-form/pedido-form.component';
 import { TipoPastelFormComponent } from './components/tipo-pastel-form/tipo-pastel-form.component';
 import { TipoPastelListComponent } from './components/tipo-pastel-list/tipo-pastel-list.component';
+import { PastelListComponent } from './components/pastel-list/pastel-list.component';
 
 
 const router:Routes = [
@@ -72,7 +73,8 @@ const router:Routes = [
     PedidoListComponent,
     PedidoFormComponent,
     TipoPastelFormComponent,
-    TipoPastelListComponent
+    TipoPastelListComponent,
+    PastelListComponent
   ],
   imports: [
     BrowserModule,
