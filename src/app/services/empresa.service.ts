@@ -9,7 +9,7 @@ import { Empresa } from '../models/empresa';
   providedIn: 'root'
 })
 export class EmpresaService {
-  private urlEndPoint = 'http://localhost:8081/api/empresas/';
+  private urlEndPoint = 'https://pasteleria-hk-api.herokuapp.com/api/empresas/';
   private header = new HttpHeaders({
     'Content-type': 'application/json'
   });

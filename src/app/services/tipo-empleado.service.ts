@@ -8,7 +8,7 @@ import { TipoEmpleado } from '../models/tipo-empleado';
   providedIn: 'root'
 })
 export class TipoEmpleadoService {
-  private urlEndPoint = 'http://localhost:8081/api/tipo_empleado/';
+  private urlEndPoint = 'https://pasteleria-hk-api.herokuapp.com/api/tipo_empleado/';
   private header = new HttpHeaders({
     'Content-type': 'application/json'
   });

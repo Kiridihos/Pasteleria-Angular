@@ -8,7 +8,7 @@ import { Persona } from '../models/persona';
   providedIn: 'root'
 })
 export class PersonaService {
-  private urlEndPoint = 'http://localhost:8081/api/personas/';
+  private urlEndPoint = 'https://pasteleria-hk-api.herokuapp.com/api/personas/';
   private header = new HttpHeaders({
     'Content-type': 'application/json'
   });

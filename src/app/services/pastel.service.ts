@@ -8,7 +8,7 @@ import { Pastel } from '../models/pastel';
   providedIn: 'root'
 })
 export class PastelService {
-  private urlEndPoint = 'http://localhost:8081/api/pasteles/';
+  private urlEndPoint = 'https://pasteleria-hk-api.herokuapp.com/api/pasteles/';
   private header = new HttpHeaders({
     'Content-type': 'application/json'
   });

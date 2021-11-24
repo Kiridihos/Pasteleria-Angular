@@ -8,7 +8,7 @@ import { Pedido } from '../models/pedido';
   providedIn: 'root'
 })
 export class PedidoService {
-  private urlEndPoint = 'http://localhost:8081/api/pedidos/';
+  private urlEndPoint = 'https://pasteleria-hk-api.herokuapp.com/api/pedidos/';
   private header = new HttpHeaders({
     'Content-type': 'application/json'
   });

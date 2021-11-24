@@ -8,7 +8,7 @@ import { TipoPastel } from '../models/tipo-pastel';
   providedIn: 'root'
 })
 export class TipoPastelService {
-  private urlEndPoint = 'http://localhost:8081/api/tipo_pastel/';
+  private urlEndPoint = 'https://pasteleria-hk-api.herokuapp.com/api/tipo_pastel/';
   private header = new HttpHeaders({
     'Content-type': 'application/json'
   });

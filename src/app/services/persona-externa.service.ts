@@ -9,7 +9,7 @@ import { PersonaExterna } from '../models/persona-externa';
   providedIn: 'root'
 })
 export class PersonaExternaService {
-  private urlEndPoint = 'http://localhost:8081/api/persona_externa/';
+  private urlEndPoint = 'https://pasteleria-hk-api.herokuapp.com/api/persona_externa/';
   private header = new HttpHeaders({
     'Content-type': 'application/json'
   });
@@ -29,7 +29,7 @@ export class PersonaExternaService {
       val => console.log(val)
     );
     return result;
-  } 
+  }
 
   create(personaExterna:PersonaExterna): Observable<PersonaExterna>{
     return this.http.post<PersonaExterna>(

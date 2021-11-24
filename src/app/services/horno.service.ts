@@ -8,7 +8,7 @@ import { Horno } from '../models/horno';
   providedIn: 'root'
 })
 export class HornoService {
-  private urlEndPoint = 'http://localhost:8081/api/hornos/';
+  private urlEndPoint = 'https://pasteleria-hk-api.herokuapp.com/api/hornos/';
   private header = new HttpHeaders({
     'Content-type': 'application/json'
   });

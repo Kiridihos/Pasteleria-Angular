@@ -8,7 +8,7 @@ import { Ingrediente } from '../models/ingrediente';
   providedIn: 'root'
 })
 export class IngredienteService {
-  private urlEndPoint = 'http://localhost:8081/api/ingredientes/';
+  private urlEndPoint = 'https://pasteleria-hk-api.herokuapp.com/api/ingredientes/';
   private header = new HttpHeaders({
     'Content-type': 'application/json'
   });
