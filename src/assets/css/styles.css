@@ -1,7 +1,0 @@
-/*Atributos unicos*/
-.carousel-item {
-	object-fit: cover;
-}
-#carouselModels.carousel-item img {
-	height: 600px;
-}

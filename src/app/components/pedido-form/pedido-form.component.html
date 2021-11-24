@@ -26,6 +26,10 @@
             {{ empleado.nombres }} {{ empleado.apellidos }}
           </option>
         </select>
+        <small class="text-muted">
+          ¿No encuentras el empleado que buscas? Regístralo
+          <a [routerLink]="['/empleados/new']">aquí.</a>
+        </small>
       </div>
       <div class="form-group my-3">
         <label for="cliente">Cliente</label>
@@ -49,6 +53,10 @@
             {{ empleado.nombres }} {{ empleado.apellidos }}
           </option>
         </select>
+        <small class="text-muted">
+          ¿No encuentras el empleado que buscas? Regístralo
+          <a [routerLink]="['/clientes/new']">aquí.</a>
+        </small>
       </div>
       <button class="btn btn-primary" (click)="create()">Guardar</button>
     </form>
@@ -97,66 +105,75 @@
 <p-dialog
   [(visible)]="pastelDialog"
   header="Crear pastel"
-  [style]="{ width: '800px' }"
-  styleClass="p-fluid"
+  [style]="{ width: '70vw' }"
   [modal]="true"
 >
   <ng-template pTemplate="content">
-    <form>
-      <div class="row">
-        <div class="form-group my-3">
-          <label for="nombre">Nombre del pastel</label>
-          <input
-            type="text"
-            name="nombre"
-            id="nombre"
-            [(ngModel)]="pastel.nombre"
-            class="form-control"
-          />
-        </div>
-        <div class="form-group my-3">
-          <label for="pesoMin">Peso mínimo</label>
-          <input
-            type="number"
-            name="pesoMin"
-            id="pesoMin"
-            [(ngModel)]="pastel.pesoMin"
-            class="form-control"
-          />
-        </div>
-        <div class="form-group my-3">
-          <label for="adicional">Adicional</label>
-          <input
-            type="text"
-            name="adicional"
-            id="adicional"
-            [(ngModel)]="pastel.adicional"
-            class="form-control"
-          />
-        </div>
-        <div class="form-group my-3">
-          <label for="tipoEmpleado">Tipo de pastel</label>
-          <select
-            name="tipoPastel"
-            id="tipoPastel"
-            class="form-control"
-            [(ngModel)]="pastel.tipo"
-          >
-            <option selected>Selecciona un tipo de pastel</option>
-            <option
-              *ngFor="let tipoPastel of tiposPastel"
-              [ngValue]="tipoPastel"
+    <div class="container px-2">
+      <form>
+        <div class="row">
+          <div class="form-group my-3">
+            <label for="nombre">Nombre del pastel</label>
+            <input
+              type="text"
+              name="nombre"
+              id="nombre"
+              [(ngModel)]="pastel.nombre"
+              class="form-control"
+              autofocus
+            />
+          </div>
+          <div class="form-group my-3">
+            <label for="pesoMin">Peso mínimo</label>
+            <input
+              type="number"
+              name="pesoMin"
+              id="pesoMin"
+              [(ngModel)]="pastel.pesoMin"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group my-3">
+            <label for="adicional">Adicional</label>
+            <input
+              type="text"
+              name="adicional"
+              id="adicional"
+              [(ngModel)]="pastel.adicional"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group my-3">
+            <label for="tipoEmpleado">Tipo de pastel</label>
+            <select
+              name="tipoPastel"
+              id="tipoPastel"
+              class="form-control"
+              [(ngModel)]="pastel.tipo"
             >
-              {{ tipoPastel.descripcion }}
-            </option>
-          </select>
+              <option selected>Selecciona un tipo de pastel</option>
+              <option
+                *ngFor="let tipoPastel of tiposPastel"
+                [ngValue]="tipoPastel"
+              >
+                {{ tipoPastel.descripcion }}
+              </option>
+            </select>
+            <small class="text-muted">
+              ¿No encuentras el tipo que buscas? Regístralo
+              <a [routerLink]="['/clientes/new']">aquí.</a>
+            </small>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </ng-template>
   <ng-template pTemplate="footer">
     <div class="row">
       <div class="col-12">
+        <button class="btn btn-secondary me-3" (click)="closeDialog()">
+          Cancelar
+        </button>
         <button class="btn btn-primary" (click)="addPastel(pastel)">
           Guardar pastel
         </button>

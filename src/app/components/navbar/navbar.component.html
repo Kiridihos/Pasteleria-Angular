@@ -1,151 +1,161 @@
-<nav
-  class="navbar fixed-top navbar-expand-lg navbar-light"
-  style="background-color: #e3f2fd"
->
-  <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
-    <a class="navbar-brand" href="#">HK & Associates</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse text-center" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Empleados
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li>
-              <a class="dropdown-item" [routerLink]="['/empleados']"
-                >Ver Empleados</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" [routerLink]="['/empleados/new']"
-                >Registrar Empleados</a
-              >
-            </li>
-            <div class="dropdown-divider"></div>
-            <li>
-              <a class="dropdown-item" [routerLink]="['/tipos_empleado/new']"
-                >Registrar tipo de empleado</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" [routerLink]="['/tipos_empleado']"
-                >Ver todos los tipos de empleados</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            href=""
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-            role="button"
-            >Clientes</a
-          >
-          <ul class="dropdown-menu">
-            <li>
-              <a [routerLink]="['/clientes/new']" class="dropdown-item"
-                >Registrar cliente</a
-              >
-            </li>
-            <li>
-              <a href="#" class="dropdown-item" [routerLink]="['/clientes']"
-                >Ver todos los clientes</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Pasteles
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li>
-              <a class="dropdown-item" [routerLink]="['/pasteleros']"
-                >Ver todos los pasteles</a
-              >
-            </li>
-            <div class="dropdown-divider"></div>
-            <li>
-              <a class="dropdown-item" [routerLink]="['/tipos_pastel']"
-                >Ver todos los tipos de pastel</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" [routerLink]="['/tipos_pastel/new']"
-                >Registrar tipo de pastel</a
-              >
-            </li>
-            <div class="dropdown-divider"></div>
-            <li>
-              <a [routerLink]="['/hornos/new']" class="dropdown-item"
-                >Registrar horno</a
-              >
-              <a [routerLink]="['/hornos']" class="dropdown-item"
-                >Ver todos los hornos</a
-              >
-            </li>
-            <div class="dropdown-divider"></div>
-            <li>
-              <a [routerLink]="['/ingredientes/new']" class="dropdown-item"
-                >Registrar ingrediente</a
-              >
-              <a [routerLink]="['/ingredientes']" class="dropdown-item"
-                >Ver todos los ingredientes</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Orden
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li>
-              <a class="dropdown-item" [routerLink]="['/pedidos/new']"
-                >Nueva orden</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" [routerLink]="['/pedidos']"
-                >Ver órdenes</a
-              >
-            </li>
-          </ul>
-        </li>
-      </ul>
+<header>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-pink">
+    <div class="mx-lg-auto mx-3 d-sm-flex d-block flex-sm-nowrap">
+      <a class="navbar-brand" href="#">
+        <img
+          class="navbar-brand-img"
+          src="../../../assets/img/hk.png"
+          alt="Logo"
+          width="60"
+          height="60"
+        />
+      </a>
+      <a href="#" class="navbar-brand" style="margin-top: 5px; color: #806f80">
+        H.K. & Associates
+      </a>
+      <button
+        class="navbar-toggler mx-auto"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-lg-center" id="navbarNav">
+        <ul class="navbar-nav ms-5 ms-lg-0 mb-2 mb-md-0">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Empleados
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" [routerLink]="['/empleados']"
+                  >Ver Empleados</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/empleados/new']"
+                  >Registrar Empleados</a
+                >
+              </li>
+              <div class="dropdown-divider"></div>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/tipos_empleado/new']"
+                  >Registrar tipo de empleado</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/tipos_empleado']"
+                  >Ver todos los tipos de empleados</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              href=""
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              role="button"
+              >Clientes</a
+            >
+            <ul class="dropdown-menu">
+              <li>
+                <a [routerLink]="['/clientes/new']" class="dropdown-item"
+                  >Registrar cliente</a
+                >
+              </li>
+              <li>
+                <a href="#" class="dropdown-item" [routerLink]="['/clientes']"
+                  >Ver todos los clientes</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Pasteles
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" [routerLink]="['/pasteleros']"
+                  >Ver todos los pasteles</a
+                >
+              </li>
+              <div class="dropdown-divider"></div>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/tipos_pastel']"
+                  >Ver todos los tipos de pastel</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/tipos_pastel/new']"
+                  >Registrar tipo de pastel</a
+                >
+              </li>
+              <div class="dropdown-divider"></div>
+              <li>
+                <a [routerLink]="['/hornos/new']" class="dropdown-item"
+                  >Registrar horno</a
+                >
+                <a [routerLink]="['/hornos']" class="dropdown-item"
+                  >Ver todos los hornos</a
+                >
+              </li>
+              <div class="dropdown-divider"></div>
+              <li>
+                <a [routerLink]="['/ingredientes/new']" class="dropdown-item"
+                  >Registrar ingrediente</a
+                >
+                <a [routerLink]="['/ingredientes']" class="dropdown-item"
+                  >Ver todos los ingredientes</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Orden
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" [routerLink]="['/pedidos/new']"
+                  >Nueva orden</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/pedidos']"
+                  >Ver órdenes</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>

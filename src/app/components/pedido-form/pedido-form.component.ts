@@ -87,8 +87,11 @@ export class PedidoFormComponent implements OnInit {
   }
 
   showPastelDialog(): void {
-    console.log('Click');
     this.pastelDialog = true;
+  }
+
+  closeDialog(): void{
+    this.pastelDialog = false;
   }
 
   addPastel(pastel: Pastel) {
@@ -124,7 +127,6 @@ export class PedidoFormComponent implements OnInit {
     let d = fechaAnt.getDay().toString();
     fecha += y;
     fecha += ' 00:00:00'
-    console.log(fecha);
     return fecha;
   }
 
