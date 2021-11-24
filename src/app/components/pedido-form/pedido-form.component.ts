@@ -1,14 +1,18 @@
-import { TipoPastelService } from './../../services/tipo-pastel.service';
-import { PedidoService } from './../../services/pedido.service';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pedido } from 'src/app/models/pedido';
+import { PedidoService } from './../../services/pedido.service';
 import { Empleado } from 'src/app/models/empleado';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { Pastel } from 'src/app/models/pastel';
-import { isNull } from '@angular/compiler/src/output/output_ast';
+import { PastelService } from 'src/app/services/pastel.service';
 import { TipoPastel } from 'src/app/models/tipo-pastel';
+import { TipoPastelService } from './../../services/tipo-pastel.service';
+import { Empresa } from 'src/app/models/empresa';
+import { EmpresaService } from 'src/app/services/empresa.service';
+import { PersonaExterna } from 'src/app/models/persona-externa';
+import { PersonaExternaService } from 'src/app/services/persona-externa.service';
 
 @Component({
   selector: 'app-pedido-form',
@@ -19,36 +23,64 @@ export class PedidoFormComponent implements OnInit {
   pastelDialog: boolean;
   pedido:Pedido;
   title: string;
+  fecha: string;
   pastel: Pastel;
   empleados: Empleado[];
   pasteles: Pastel[];
-  tiposPastel:TipoPastel[];
+  tiposPastel: TipoPastel[];
+  personas: PersonaExterna[];
+  empresas: Empresa[];
+  pastelesCreados: Pastel[];
+  pedidoCreado: Pedido;
   constructor(private PedidoService: PedidoService,
-    private empleadoService: EmpleadoService, private tipoPastelService:TipoPastelService,
+    private empleadoService: EmpleadoService,
+    private tipoPastelService: TipoPastelService,
+    private pastelService: PastelService,
+    private personaService: PersonaExternaService,
+    private empresaService:EmpresaService,
     private router: Router,
     private activate: ActivatedRoute) {
     this.pedido = new Pedido();
     this.pastel = new Pastel();
+    this.pedidoCreado = new Pedido();
     this.empleados = [];
     this.pasteles = [];
-    this.title = '';
-    this.pastelDialog = false;
     this.tiposPastel = [];
+    this.personas = [];
+    this.empresas = [];
+    this.pastelesCreados = [];
+    this.title = '';
+    this.fecha = '';
+    this.pastelDialog = false;
   }
 
   ngOnInit(): void {
     this.cargarPedido();
-    this.getEmpleado();
+    this.getEmpleados();
+    this.getPersonas();
+    this.getEmpresas();
+    this.getTipos();
   }
 
   getTipos():void{
-    this.tipoPastelService.getPasteles().subscribe(
+    this.tipoPastelService.getTipos().subscribe(
       tiposPastel => this.tiposPastel = tiposPastel
     );
   }
 
+  getPersonas(): void{
+    this.personaService.getPersonasExternas().subscribe(
+      personas => this.personas = personas
+    );
+  }
 
-  getEmpleado():void{
+  getEmpresas(): void{
+    this.empresaService.getEmpresas().subscribe(
+      empresas => this.empresas = empresas
+    );
+  }
+
+  getEmpleados():void{
     this.empleadoService.getEmpleados().subscribe(
       empleados => this.empleados = empleados
     );
@@ -79,16 +111,51 @@ export class PedidoFormComponent implements OnInit {
     }
   }
 
-  guardarPasteles(): void{
-    for (const pastel in this.pasteles) {
+  processDate():string{
+    let fecha = '';
+    let fechaAnt = new Date(this.fecha);
+    let fechaString = fechaAnt.toDateString();
+    let y = fechaAnt.getFullYear().toString();
+    fecha += y;
+    fecha += '-';
+    let m = fechaAnt.getMonth().toString();
+    fecha += m;
+    fecha += '-';
+    let d = fechaAnt.getDay().toString();
+    fecha += y;
+    fecha += ' 00:00:00'
+    console.log(fecha);
+    return fecha;
+  }
 
-    }
+  guardarPasteles(): void{
+    this.pasteles.forEach(
+      pastel => {
+        this.pastelService.create(pastel).subscribe(
+          response => {
+            this.pastelesCreados.push(response);
+          }
+        );
+      }
+    );
+  }
+
+  asignarPasteles(): void{
+    this.pastelesCreados.forEach(
+      pastel => {
+        pastel.pedido = this.pedidoCreado;
+        this.pastelService.update(pastel);
+      }
+    );
   }
 
   create(): void{
     this.guardarPasteles();
+    this.pedido.fechaEntrega = this.processDate();
     this.PedidoService.create(this.pedido).subscribe(
       response => {
+        this.pedidoCreado = response;
+        this.asignarPasteles();
         this.router.navigate(['/']);
         Swal.fire(
           {

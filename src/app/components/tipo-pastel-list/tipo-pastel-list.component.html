@@ -1,0 +1,32 @@
+<div class="my-4">
+  <h1 class="display-4">{{ title }}</h1>
+  <hr />
+  <div class="table-responsive mt-4">
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Descripción</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tipo of tipos">
+          <td>{{ tipo.id }}</td>
+          <td>{{ tipo.descripcion }}</td>
+          <td>
+            <button class="btn btn-sm btn-danger me-2" (click)="delete(tipo)">
+              Eliminar
+            </button>
+            <button
+              class="btn btn-sm btn-warning"
+              [routerLink]="['/tipos_pastel/update', tipo.id]"
+            >
+              Editar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

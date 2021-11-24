@@ -15,7 +15,7 @@ export class EmpleadosFormComponent implements OnInit {
   empleado:Empleado;
   title:string;
   tipos:TipoEmpleado[];
-  constructor(private empleadoService:EmpleadoService, private tipoService:TipoEmpleadoService, private router:Router, private activate:ActivatedRoute) { 
+  constructor(private empleadoService:EmpleadoService, private tipoService:TipoEmpleadoService, private router:Router, private activate:ActivatedRoute) {
     this.empleado = new Empleado();
     this.tipos = [];
     this.title = '';
@@ -32,10 +32,16 @@ export class EmpleadosFormComponent implements OnInit {
     );
   }
 
-  create():void{
+  create(another?:boolean):void{
     this.empleadoService.create(this.empleado).subscribe(
       response => {
-        this.router.navigate(['/']);
+        if (another) {
+          this.router.navigate(['/empleados/new']);
+          this.empleado = new Empleado();
+        }
+        else {
+          this.router.navigate(['/']);
+        }
         Swal.fire(
           {
             title: 'Eres una chimba',
@@ -46,7 +52,7 @@ export class EmpleadosFormComponent implements OnInit {
         );
       }
     );
-  }  
+  }
   cargarEmpleado():void{
     this.activate.params.subscribe(
       params => {
@@ -64,9 +70,9 @@ export class EmpleadosFormComponent implements OnInit {
     );
   }
 
-  check():void{
+  check(another?:boolean):void{
     if(this.isCheckInputs()){
-      this.create();
+      this.create(another);
     }
   }
   isCheckInputs():boolean{
@@ -83,7 +89,7 @@ export class EmpleadosFormComponent implements OnInit {
       return false;
     }else if (this.empleado.nombres?.charAt(0).match(/[\s]/)
       ||this.empleado.nombres?.charAt(this.empleado.nombres.length-1).match(/[\s]/)
-      ||this.empleado.apellidos?.charAt(0).match(/[\s]/) 
+      ||this.empleado.apellidos?.charAt(0).match(/[\s]/)
       ||this.empleado.apellidos?.charAt(this.empleado.apellidos.length-1).match(/[\s]/) ){
         Swal.fire(
           {

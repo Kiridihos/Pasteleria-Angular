@@ -14,13 +14,13 @@ export class TipoPastelService {
   });
   constructor(private http:HttpClient) { }
 
-  getPasteles(): Observable<TipoPastel[]>{
+  getTipos(): Observable<TipoPastel[]>{
     return this.http.get(this.urlEndPoint).pipe(
       map((response) => response as TipoPastel[])
     );
   }
 
-  getPastel(id:string): Observable<TipoPastel>{
+  getTipo(id:string): Observable<TipoPastel>{
     return this.http.get<TipoPastel>(
       this.urlEndPoint + id
     );

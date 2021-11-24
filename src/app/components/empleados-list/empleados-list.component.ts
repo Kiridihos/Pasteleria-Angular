@@ -10,9 +10,11 @@ import { EmpleadoService } from 'src/app/services/empleado.service';
   styleUrls: ['./empleados-list.component.css']
 })
 export class EmpleadosListComponent implements OnInit {
-  empleados:Empleado[];
-  constructor(private empleadoService:EmpleadoService, private router:Router, private activate:ActivatedRoute) { 
+  empleados: Empleado[];
+  title: string;
+  constructor(private empleadoService:EmpleadoService, private router:Router, private activate:ActivatedRoute) {
     this.empleados = [];
+    this.title = 'Lista de empleados';
   }
 
   ngOnInit(): void {

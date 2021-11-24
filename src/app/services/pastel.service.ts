@@ -36,6 +36,16 @@ export class PastelService {
     );
   }
 
+  update(pastel: Pastel): Observable<Pastel>{
+    return this.http.put<Pastel>(
+      `${this.urlEndPoint}${pastel.id}`,
+      pastel,
+      {
+        headers: this.header
+      }
+    );
+  }
+
   delete(id:string): Observable<Pastel>{
     return this.http.delete<Pastel>(
       this.urlEndPoint + id,

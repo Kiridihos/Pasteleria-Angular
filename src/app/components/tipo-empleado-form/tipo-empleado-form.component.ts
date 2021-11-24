@@ -21,10 +21,15 @@ export class TipoEmpleadoFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  create():void{
+  create(another?:boolean):void{
     this.tipoEmpleadoService.create(this.tipoEmpleado).subscribe(
       response => {
-        this.router.navigate(['/']);
+        if (another) {
+          this.router.navigate(['/tipos_empleado/new']);
+          this.tipoEmpleado = new TipoEmpleado();
+        } else {
+          this.router.navigate(['/']);
+        }
         Swal.fire(
           {
             title: 'Nea eres una chimba ',
@@ -36,9 +41,9 @@ export class TipoEmpleadoFormComponent implements OnInit {
       }
     );
   }
-  check():void{
+  check(another?:boolean):void{
     if(this.isCheckInputs()){
-      this.create();
+      this.create(another);
     }
   }
   isCheckInputs():boolean{

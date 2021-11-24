@@ -10,14 +10,42 @@
           name="salarioActual"
           id="salarioActual"
           class="form-control"
-          [(ngModel)]="pedido.fechaEntrega"
+          [(ngModel)]="fecha"
         />
       </div>
       <div class="form-group my-3">
         <label for="empleado">Empleado encargado</label>
-        <select name="empleado" id="empleado" class="form-control">
+        <select
+          name="empleado"
+          id="empleado"
+          class="form-control"
+          [(ngModel)]="pedido.empleado"
+        >
           <option selected>Selecciona un empleado...</option>
           <option [ngValue]="empleado" *ngFor="let empleado of empleados">
+            {{ empleado.nombres }} {{ empleado.apellidos }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group my-3">
+        <label for="cliente">Cliente</label>
+        <select
+          name="cliente"
+          id="cliente"
+          class="form-control"
+          [(ngModel)]="pedido.cliente"
+        >
+          <option selected>Selecciona una opción...</option>
+          <option *ngFor="let persona of personas" [ngValue]="persona.persona">
+            {{ persona.nombres }} {{ persona.apellidos }}
+          </option>
+          <option *ngFor="let empresa of empresas" [ngValue]="empresa.persona">
+            {{ empresa.nombre }}
+          </option>
+          <option
+            *ngFor="let empleado of empleados"
+            [ngValue]="empleado.persona"
+          >
             {{ empleado.nombres }} {{ empleado.apellidos }}
           </option>
         </select>
@@ -36,7 +64,7 @@
             >
           </td>
           <td>
-            {{ pastel.tipo }}<br /><small class="text-muted"
+            {{ pastel.tipo?.descripcion }}<br /><small class="text-muted"
               >Tipo del pastel</small
             >
           </td>
@@ -107,19 +135,22 @@
           />
         </div>
         <div class="form-group my-3">
-            <label for="tipoEmpleado">Tipo de pastel</label>
-            <select
-              name="tipoPastel"
-              id="tipoPastel"
-              class="form-control"
-              [(ngModel)]="tiposPastel"
+          <label for="tipoEmpleado">Tipo de pastel</label>
+          <select
+            name="tipoPastel"
+            id="tipoPastel"
+            class="form-control"
+            [(ngModel)]="pastel.tipo"
+          >
+            <option selected>Selecciona un tipo de pastel</option>
+            <option
+              *ngFor="let tipoPastel of tiposPastel"
+              [ngValue]="tipoPastel"
             >
-              <option selected>Selecciona un tipo de pastel</option>
-              <option *ngFor="let tipoPastel of tiposPastel" [ngValue]="tiposPastel">
-                {{ tipoPastel.descripcion }}
-              </option>
-            </select>
-          </div>
+              {{ tipoPastel.descripcion }}
+            </option>
+          </select>
+        </div>
       </div>
     </form>
   </ng-template>

@@ -49,8 +49,15 @@
             {{ tipo.descripcion }}
           </option>
         </select>
+        <small class="text-muted">
+          ¿No encuentras el tipo que buscas? Créalo
+          <a [routerLink]="['/tipos_empleado/new']">aquí.</a>
+        </small>
       </div>
-      <button class="btn btn-primary" (click)="check()">Guardar</button>
+      <button class="btn btn-primary me-2" (click)="check()">Guardar</button>
+      <button class="btn btn-secondary" (click)="check(true)">
+        Guardar y crear otro
+      </button>
     </form>
   </div>
 </div>
