@@ -15,7 +15,7 @@ export class HornoFormComponent implements OnInit {
   title: string;
   constructor(private hornoService:HornoService, private router:Router, private activate:ActivatedRoute) {
     this.horno = new Horno();
-    this.title = 'Registrar horno';
+    this.title = '';
   }
 
   ngOnInit(): void {
@@ -45,6 +45,10 @@ export class HornoFormComponent implements OnInit {
           this.hornoService.getHorno(id).subscribe(
             horno => this.horno = horno
           );
+          this.title = 'Editar horno';
+        }
+        else {
+          this.title = 'Registrar horno';
         }
       }
     );

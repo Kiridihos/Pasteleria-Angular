@@ -29,7 +29,12 @@
               >
                 Eliminar
               </button>
-              <button class="btn btn-sm btn-warning">Editar</button>
+              <button
+                class="btn btn-sm btn-warning"
+                [routerLink]="['/tipos_empleado/update', tipoEmpleado.id]"
+              >
+                Editar
+              </button>
             </td>
           </tr>
         </tbody>

@@ -21,11 +21,11 @@ export class EmpresaService {
     );
   }
 
-  getEmpresa(nit:number):Observable<Empresa>{
+  getEmpresa(id:string):Observable<Empresa>{
     return this.http.get<Empresa>(
-      this.urlEndPoint + nit.toString()
+      this.urlEndPoint + id
     );
-  } 
+  }
 
   create(empresa:Empresa): Observable<Empresa>{
     return this.http.post<Empresa>(
@@ -37,9 +37,9 @@ export class EmpresaService {
     );
   }
 
-  delete(nit:number): Observable<Empresa>{
+  delete(id:string): Observable<Empresa>{
     return this.http.delete<Empresa>(
-      this.urlEndPoint + nit,
+      this.urlEndPoint + id,
       {
         headers: this.header
       }

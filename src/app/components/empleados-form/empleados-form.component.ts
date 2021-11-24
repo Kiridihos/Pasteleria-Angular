@@ -43,7 +43,12 @@ export class EmpleadosFormComponent implements OnInit {
         else {
           this.router.navigate(['/']);
         }
-        AlertHelper.alertaGuardar('Creaste un empleado ome');
+        if (this.empleado.id) {
+          AlertHelper.alertaGuardar('Guardaste el empleado, parcero');
+        }
+        else {
+          AlertHelper.alertaGuardar('Creaste un empleado ome');
+        }
       }
     );
   }

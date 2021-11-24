@@ -16,10 +16,28 @@ export class TipoEmpleadoFormComponent implements OnInit {
   title: string;
   constructor(private tipoEmpleadoService:TipoEmpleadoService, private router:Router, private activate:ActivatedRoute) {
     this.tipoEmpleado = new TipoEmpleado();
-    this.title = 'Registrar tipo de empleado'
+    this.title = '';
   }
 
   ngOnInit(): void {
+    this.cargarTipo()
+  }
+
+  cargarTipo(): void {
+    this.activate.params.subscribe(
+      params => {
+        let id = params['id'];
+        if (id) {
+          this.tipoEmpleadoService.getEmpleado(id).subscribe(
+            tipoEmpleado => this.tipoEmpleado = tipoEmpleado
+          );
+          this.title = 'Editar tipo de empleado';
+        }
+        else {
+          this.title = 'Registrar tipo de empleado';
+        }
+      }
+    );
   }
 
   create(another?:boolean):void{
@@ -31,7 +49,12 @@ export class TipoEmpleadoFormComponent implements OnInit {
         } else {
           this.router.navigate(['/']);
         }
-        AlertHelper.alertaGuardar('Creaste un tipo de empleado ome');
+        if (this.tipoEmpleado.id) {
+          AlertHelper.alertaGuardar('Guardaste el tipo de empleado, parcero');
+        }
+        else {
+          AlertHelper.alertaGuardar('Creaste un tipo de empleado ome');
+        }
       }
     );
   }

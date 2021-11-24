@@ -86,7 +86,7 @@ export class ClientesListComponent implements OnInit {
     AlertHelper.alertaBorrar().then(
       (result) => {
         if (result.isConfirmed) {
-          this.empresaService.delete(empresa.nit!).subscribe(
+          this.empresaService.delete(empresa.id!).subscribe(
             response => {
               this.empresas = this.empresas.filter(empr => empr != empresa);
               AlertHelper.alertaGuardar('Borraste una empresa ome');

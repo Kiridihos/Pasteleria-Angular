@@ -15,7 +15,7 @@ export class IngredienteFormComponent implements OnInit {
   title: string;
   constructor(private ingredienteService:IngredienteService, private router:Router, private activate:ActivatedRoute) {
     this.ingrediente = new Ingrediente();
-    this.title = 'Registrar ingrediente';
+    this.title = '';
   }
 
   ngOnInit(): void {
@@ -45,6 +45,10 @@ export class IngredienteFormComponent implements OnInit {
           this.ingredienteService.getIngrediente(id).subscribe(
             ingrediente => this.ingrediente = ingrediente
           );
+          this.title = 'Editar ingrediente';
+        }
+        else {
+          this.title = 'Registrar ingrediente';
         }
       }
     );
@@ -58,10 +62,6 @@ export class IngredienteFormComponent implements OnInit {
   isCheckInputs():boolean{
     if (ValidationHelper.empty(this.ingrediente)) {
       AlertHelper.alertaCheck('¿Se te olvidó diligenciar algún campo, mijo?');
-      return false;
-    }
-    else if (ValidationHelper.spaces(this.ingrediente.nombre)) {
-      AlertHelper.alertaCheck('¿Pusiste espacios antes o después de los valores, mijo?');
       return false;
     }
     return true;

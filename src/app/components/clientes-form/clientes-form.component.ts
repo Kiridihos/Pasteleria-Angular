@@ -30,7 +30,7 @@ export class ClientesFormComponent implements OnInit {
       this.tiposCliente = ['Empresa', 'Persona externa']
       this.selected = '';
     this.opcion = '';
-    this.title = 'Registrar cliente';
+    this.title = '';
     }
 
   ngOnInit(): void {
@@ -50,21 +50,28 @@ export class ClientesFormComponent implements OnInit {
   cargarCliente():void{
     this.activate.params.subscribe(
       params => {
-        let identificador = params['nit'];
-        if (identificador) {
-          if (this.esNumero(identificador)) {
-            this.empresaService.getEmpresa(identificador).subscribe(
-              empresa => this.empresa = empresa
-            );
-            this.selected = 'Empresa';
-          }
-          else {
-            this.personaService.getPersonaExterna(identificador).subscribe(
-              persona => this.persona = persona
-            );
-            console.log(this.persona);
-            this.selected = 'Persona externa';
-          }
+        let tipo = params['tipo'];
+        console.log(tipo);
+        let identificador = params['id'];
+        console.log(identificador);
+        if (tipo === 'empresa') {
+          this.empresaService.getEmpresa(identificador).subscribe(
+            empresa => this.empresa = empresa
+          );
+          console.log(this.empresa);
+          this.selected = 'Empresa';
+          this.title = 'Editar Empresa'
+        }
+        else if (tipo === 'persona') {
+          this.personaService.getPersonaExterna(identificador).subscribe(
+            persona => this.persona = persona
+          );
+          console.log(this.persona);
+          this.selected = 'Persona externa';
+          this.title = 'Editar Persona Externa';
+        }
+        else {
+          this.title = 'Registrar cliente';
         }
       }
     );
@@ -87,7 +94,12 @@ export class ClientesFormComponent implements OnInit {
     this.empresaService.create(this.empresa).subscribe(
       response => {
         this.router.navigate(['/']);
-        AlertHelper.alertaGuardar('Registraste una empresa ome');
+        if (this.empresa.id) {
+          AlertHelper.alertaGuardar('Guardaste la empresa, parcero');
+        }
+        else {
+          AlertHelper.alertaGuardar('Registraste una empresa ome');
+        }
       }
     );
   }
@@ -113,7 +125,12 @@ export class ClientesFormComponent implements OnInit {
     this.personaService.create(this.persona).subscribe(
       response => {
         this.router.navigate(['/']);
-        AlertHelper.alertaGuardar('Registraste una persona externa ome');
+        if (this.persona.id) {
+          AlertHelper.alertaGuardar('Guardaste la persona externa, parcero');
+        }
+        else {
+          AlertHelper.alertaGuardar('Registraste una persona externa ome');
+        }
       }
     );
   }
@@ -130,8 +147,7 @@ export class ClientesFormComponent implements OnInit {
       return false;
     }
     else if (
-      ValidationHelper.spaces(this.empresa.nombre) ||
-      ValidationHelper.spaces(this.empresa.direccion)
+      ValidationHelper.spaces(this.empresa.nombre)
     ) {
       AlertHelper.alertaCheck('¿Ingresaste espacios antes o después de los valores, mijo?');
       return false;

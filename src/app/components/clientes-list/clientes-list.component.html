@@ -95,7 +95,11 @@
                           </button>
                           <button
                             class="btn btn-sm btn-warning"
-                            [routerLink]="['/clientes/update', empresa.nit]"
+                            [routerLink]="[
+                              '/clientes/update',
+                              'empresa',
+                              empresa.id
+                            ]"
                           >
                             Editar
                           </button>
@@ -162,7 +166,11 @@
                           </button>
                           <button
                             class="btn btn-sm btn-warning"
-                            [routerLink]="['/clientes/update', persona.id]"
+                            [routerLink]="[
+                              '/clientes/update',
+                              'persona',
+                              persona.id
+                            ]"
                           >
                             Editar
                           </button>

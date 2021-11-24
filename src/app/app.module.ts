@@ -38,6 +38,7 @@ const router:Routes = [
   {path: 'clientes/new', component:ClientesFormComponent},
   {path: 'clientes/update/:nit', component:ClientesFormComponent},
   {path: 'clientes/update/:id', component:ClientesFormComponent},
+  {path: 'clientes/update/:tipo/:id', component:ClientesFormComponent},
   {path: 'clientes', component: ClientesListComponent},
   {path: 'hornos', component: HornosListComponent},
   {path: 'hornos/new', component: HornoFormComponent},
@@ -47,6 +48,7 @@ const router:Routes = [
   {path: 'ingredientes/update/:id', component: IngredienteFormComponent},
   {path: 'tipos_empleado', component: TipoEmpleadoListComponent},
   {path: 'tipos_empleado/new', component: TipoEmpleadoFormComponent},
+  {path: 'tipos_empleado/update/:id', component: TipoEmpleadoFormComponent},
   {path: 'pedidos/new', component: PedidoFormComponent},
   {path: 'pedidos', component: PedidoListComponent},
   {path: 'tipos_pastel', component: TipoPastelListComponent},
@@ -76,7 +78,7 @@ const router:Routes = [
     TipoPastelFormComponent,
     TipoPastelListComponent,
     PastelListComponent,
-    
+
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,7 @@ export class TipoPastelFormComponent implements OnInit {
   tipoPastel:TipoPastel;
   constructor(private tipoPastelService:TipoPastelService, private router:Router, private activate:ActivatedRoute) {
     this.tipoPastel = new TipoPastel();
-    this.title = 'Registrar tipos de pastel'
+    this.title = '';
   }
 
   ngOnInit(): void {
@@ -45,6 +45,10 @@ export class TipoPastelFormComponent implements OnInit {
           this.tipoPastelService.getTipo(id).subscribe(
             tipoPastel => this.tipoPastel = tipoPastel
           );
+          this.title = 'Editar tipo de pastel';
+        }
+        else {
+          this.title = 'Registrar tipo de pastel';
         }
       }
     );
