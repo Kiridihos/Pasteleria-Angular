@@ -2,9 +2,9 @@ import { PedidoService } from './../../services/pedido.service';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Pedido } from 'src/app/models/pedido';
 import { Empleado } from 'src/app/models/empleado';
 import { EmpleadoService } from 'src/app/services/empleado.service';
-import { Pedido } from 'src/app/models/pedido';
 import { Pastel } from 'src/app/models/pastel';
 import { isNull } from '@angular/compiler/src/output/output_ast';
 
@@ -20,7 +20,10 @@ export class PedidoFormComponent implements OnInit {
   pastel: Pastel;
   empleados: Empleado[];
   pasteles: Pastel[];
-  constructor(private PedidoService:PedidoService, private empleadoService:EmpleadoService, private router:Router, private activate:ActivatedRoute) {
+  constructor(private PedidoService: PedidoService,
+    private empleadoService: EmpleadoService,
+    private router: Router,
+    private activate: ActivatedRoute) {
     this.pedido = new Pedido();
     this.pastel = new Pastel();
     this.empleados = [];
@@ -66,11 +69,13 @@ export class PedidoFormComponent implements OnInit {
   }
 
   guardarPasteles(): void{
+    for (const pastel in this.pasteles) {
 
+    }
   }
 
   create(): void{
-    guardarPasteles();
+    this.guardarPasteles();
     this.PedidoService.create(this.pedido).subscribe(
       response => {
         this.router.navigate(['/']);
