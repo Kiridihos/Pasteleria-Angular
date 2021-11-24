@@ -147,7 +147,7 @@ export class ClientesFormComponent implements OnInit {
       return false;
     }
     else if (
-      ValidationHelper.spaces(this.empresa.nombre)
+      ValidationHelper.spaces(this.empresa)
     ) {
       AlertHelper.alertaCheck('¿Ingresaste espacios antes o después de los valores, mijo?');
       return false;
