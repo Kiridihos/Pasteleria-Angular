@@ -1,7 +1,7 @@
 <div class="row my-4 text-lg-center">
   <h1 class="display-4">{{ title }}</h1>
   <hr />
-  <div class="col-sm-12 col-lg-6">
+  <div class="col-sm-12 col-lg-4">
     <form>
       <div class="form-group my-3">
         <label for="salario actual">Fecha de la entrega</label>
@@ -25,27 +25,32 @@
       <button class="btn btn-primary" (click)="create()">Guardar</button>
     </form>
   </div>
-  <div class="col-sm-12 col-lg-6">
+  <div class="col-sm-12 col-lg-8">
     <h4 class="text-secondary">Pasteles del pedido</h4>
     <table class="table table-light table-hover">
       <tbody>
         <tr *ngFor="let pastel of pasteles">
           <td>
-            {{ pastel.id }}<br /><span class="text-strong">ID del pastel</span>
-          </td>
-          <td>
-            {{ pastel.nombre }}<br /><span class="text-strong"
-              >Nombre del pastel</span
+            {{ pastel.nombre }}<br /><small class="text-muted"
+              >Nombre del pastel</small
             >
           </td>
           <td>
-            {{ pastel.tipo }}<br /><span class="text-strong"
-              >Tipo del pastel</span
+            {{ pastel.tipo }}<br /><small class="text-muted"
+              >Tipo del pastel</small
             >
+          </td>
+          <td>
+            <button
+              class="btn btn-sm btn-outline-danger"
+              (click)="borrarPastel(pastel)"
+            >
+              Eliminar
+            </button>
           </td>
         </tr>
         <tr>
-          <td (click)="showPastelDialog()">
+          <td (click)="showPastelDialog()" colspan="3">
             <span
               class="text-warning"
               *ngIf="pasteles.length === 0; else elsePasteles"
@@ -117,7 +122,9 @@
   <ng-template pTemplate="footer">
     <div class="row">
       <div class="col-12">
-        <button class="btn btn-primary">Guardar pastel</button>
+        <button class="btn btn-primary" (click)="addPastel(pastel)">
+          Guardar pastel
+        </button>
       </div>
     </div>
   </ng-template>

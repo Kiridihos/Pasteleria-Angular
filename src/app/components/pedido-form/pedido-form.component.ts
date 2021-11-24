@@ -6,6 +6,7 @@ import { Empleado } from 'src/app/models/empleado';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { Pedido } from 'src/app/models/pedido';
 import { Pastel } from 'src/app/models/pastel';
+import { isNull } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-pedido-form',
@@ -44,7 +45,32 @@ export class PedidoFormComponent implements OnInit {
     this.pastelDialog = true;
   }
 
-  create():void{
+  addPastel(pastel: Pastel) {
+    this.pasteles.push(pastel);
+    this.pastel = new Pastel();
+    this.pastelDialog = false;
+  }
+
+  borrarPastel(pastel: Pastel) {
+    let index = this.pasteles.findIndex(
+      pastelAux => pastelAux.nombre === pastel.nombre &&
+        pastelAux.pesoMin === pastel.pesoMin &&
+        pastelAux.tipo === pastel.tipo &&
+        pastelAux.adicional === pastel.adicional
+    );
+    if (!isNaN(index)) {
+      this.pasteles.splice(index, 1);
+      this.pasteles = this.pasteles.filter(obj => obj !== pastel);
+      console.log(this.pasteles.length);
+    }
+  }
+
+  guardarPasteles(): void{
+
+  }
+
+  create(): void{
+    guardarPasteles();
     this.PedidoService.create(this.pedido).subscribe(
       response => {
         this.router.navigate(['/']);
